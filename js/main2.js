@@ -8,3 +8,20 @@
 //   return outPut;
 // }
 // console.log(pasRund(20));
+
+// 57
+// const student = {
+//   name: "Michael",
+//   age: 25,
+//   university: "LearnJS",
+//   major: "Front End",
+// };
+
+// const printStudentInfo = (person) => {
+//   const { name, age, university, major } = person;
+//   console.log(
+//     `Имя ${name}, возраст ${age}, уневерситет ${university}, основа ${major}`
+//   );
+// };
+
+// printStudentInfo(student);
