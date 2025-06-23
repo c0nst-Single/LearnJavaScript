@@ -1,3 +1,4 @@
+"use strict";
 function fnDec() {
   return; //  declaration - можно вызывать до обьявления
 }
@@ -263,4 +264,128 @@ console.log("---------------------");
 
   const city = user.addres?.city ?? "Город не известен";
   console.log(city); // --> Город не известен
+}
+
+// 63 Массивы
+
+{
+  const arr = ["Vallet", 2025, true, 33];
+  console.log(arr.indexOf(33)); // метод indexOf - ищет индекс указ. элемента в масиве
+  console.log(arr.indexOf(100)); // если искомого элемента нет выведет --> -1
+}
+// 65 метод slice
+{
+  const arr = ["car", "heelo", "mobail", true, "2020"];
+  const arr2 = arr.slice(1, 4); // метод slice передает элементы с указанного индекса по указанный(не включительно!)
+  const arr3 = arr.slice(2); // при указании одного интедкса передает все начиная с него
+  const arr4 = arr.slice(); // если не казать интекс перезает все элементы
+  const arr5 = arr.slice(0, -2); // при указании второго индекса отрицательным передает все элементы за вычетом указанного колво элементов с конца
+  console.log(arr2);
+}
+
+// 66 метод splice / toSplaced
+{
+  const arr = [1, 2, 3, 4, 5];
+  const arr2 = arr.splice(2, 2); // splice вырезает из обьекта элементы и сохроняет их в перемен.
+  console.log(arr2);
+  const arr3 = arr.toSpliced(2, 2); // toSplaced копирует указ. элементы не миняя оригинал
+  console.log(arr3);
+
+  const arr4 = [10, 20, 30, 40, 50];
+  const arr5 = arr4.splice(2, 2, "Hello", true); // splice также одновременно может добовлять элементы в массив
+  console.log(arr4);
+  const arr6 = arr4.splice(1); // удаление с указ. индекса
+  const arr7 = [10, 20, 30, 40, 50];
+  const arr8 = arr4.splice(-2, 2); // также можно вырезать с конца массива
+}
+console.log("----------------------");
+// 67 метод concat
+{
+  const arr1 = ["a", "b", "c"];
+  const arr2 = ["d", "e", "f"];
+  const arr3 = arr1.concat(arr2); // concat обьединяет массивы
+  console.log(arr3);
+  const arr4 = [1, 2, 3];
+  const arr5 = arr4.concat(4, 5, 6); // также concat можно использовать для копирования и добовления одновременно элементов массива
+  console.log(arr5);
+  const arr6 = arr1.concat(arr2, "h", "g", "j"); // можно добовлять как дркгие массивы так и эдементы вместе
+  console.log(arr6);
+}
+console.log("--------------------------------");
+// 68 циклы for of для массивоф
+{
+  const arr = [1, "hello", true, "world"];
+  for (const item of arr) {
+    console.log(item); // пребираем все эдементы массива
+  }
+}
+
+// 69 метод forEach
+{
+  const arr = [1, 2, 3, 4, 5];
+  arr.forEach((item, index, array) => {}); // метод forEach принимает три(3) аргумента и переберает массив
+  const arr2 = ["a", "b", "c", "d"];
+  arr2.forEach(function (item, index, array) {
+    console.log(`${item}, ${index}, ${array}`); // выводит наши параметры(свйство, индекс, весь массив)
+  });
+  console.log("--------------------");
+  const arr3 = ["C#", "JavaScript", "Python", "C++"];
+  arr3.forEach((item, index) => {
+    // также можно брать только два или один параметр
+    console.log(`index: ${index}, item: ${item}`);
+  });
+
+  const arr4 = [1, 2, 3, 5, 6, 7, 8];
+  const s1 = [];
+  arr4.forEach((num) => {
+    s1.push(num * num); // пример приминения forEach
+  });
+  console.log(s1); // --> [1, 4, 9, 25, 36, 49, 64]
+}
+
+// метод map
+{
+  const arr = [1, 2, 3, 4, 5];
+  const arr2 = arr.map((number) => {
+    return number.toString(); // метод map также как и forEach перебирает массив а также может вернуть значения
+  });
+  console.log(arr); // --> [1, 2, 3, 4, 5]
+  console.log(arr2); // --> ['1', '2', '3', '4', '5']
+
+  const arr3 = [1, 2, 3, 4, 5];
+  const arr4 = arr3.map((num) => num * 3); // другой пример (возврощает массив)
+  console.log(arr4); // --> [3, 6, 9, 12, 15]
+  console.log("------------------------");
+
+  const arr5 = [
+    { id: 15, name: "John" },
+    { id: 23, name: "Vallet" },
+    { id: 39, name: "Lorren" },
+  ];
+  const arr6 = arr5.map((item) => item.id); // оброзаемся к определенным свойствам по ключю
+  console.log(arr6); // --> [15, 23, 39]
+}
+
+// 71 метод Filter
+{
+  const arr = [1, 2, 3, 4, 5];
+  //const filt = arr.filter((item, index, arr)); // метод filter может принимать три пораметра(свойство, индекс, весь массив)
+  const arr2 = arr.filter((num) => num > 3); // фильтрует и сохроняет элементы
+  console.log(arr2);
+  console.log("------------------------");
+
+  const arr3 = ["Vallet", "Roman", "Loren", "Chelsi", "Cate", "Josh"];
+  const arr4 = arr3.filter((nema) => nema.length < 5); // сохроняет только те элементы которые прошли условие
+  console.log(arr4);
+  console.log("-------------------");
+  const arr5 = [
+    { price: 15, name: "banana" },
+    { price: 23, name: "Cherry" },
+    { price: 39, name: "kiwi" },
+    { price: 45, name: "apple" },
+  ];
+  const arr6 = arr5.filter(function (product) {
+    return product.price < 30; // другой пример
+  });
+  console.log(arr6); // --> [{ price: 15, name: "banana" }, { price: 23, name: "Cherry" }]
 }

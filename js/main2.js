@@ -25,3 +25,35 @@
 // };
 
 // printStudentInfo(student);
+
+//62 Задание
+// console.log("-----------------------");
+// const car = {
+//   brand: "brand",
+//   modal: "modal",
+//   year: "year",
+//   displayInfo: function () {
+//     console.log(
+//       `Марка: ${this.brand}, модель: ${this.modal}, год выпуска: ${this.year}`
+//     );
+//   },
+// };
+
+// const camry = Object.create(car);
+// (camry.brand = "Toyota"), (camry.modal = "Camry"), (camry.year = 2020);
+// const mustang = Object.create(car);
+// (mustang.brand = "Ford"), (mustang.modal = "mustang"), (mustang.year = 2015);
+// camry.displayInfo();
+// mustang.displayInfo();
+
+// 71 задание
+// const users = [
+//   { id: 1, name: "Alice", isActive: true },
+//   { id: 2, name: "Bob", isActive: false },
+//   { id: 3, name: "Charlie", isActive: true },
+//   { id: 4, name: "David", isActive: false },
+//   { id: 5, name: "Eve", isActive: true },
+// ];
+
+// const activeUser = users.filter((actUs) => actUs.isActive === true);
+// console.log(activeUser);
