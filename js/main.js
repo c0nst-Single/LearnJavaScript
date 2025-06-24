@@ -29,7 +29,7 @@ const obj1 = {
   border: "2px",
 };
 
-const obj2 = Object.assign({}, obj1); // Object.assign() - создает комию обьекта(вложенности не копирует)
+const obj2 = Object.assign({}, obj1); // Object.assign() - создает копию обьекта(вложенности не копирует)
 obj2.age = 40;
 obj2.outline = "none";
 
@@ -388,4 +388,98 @@ console.log("--------------------------------");
     return product.price < 30; // другой пример
   });
   console.log(arr6); // --> [{ price: 15, name: "banana" }, { price: 23, name: "Cherry" }]
+}
+console.log("------------------------------");
+// метод find
+{
+  const arr1 = [1, 2, 3, 4, 5];
+  const arr2 = arr1.find((num) => num === 3); // метода find ищет и возврощает искомый элемент
+  console.log(arr2);
+  const arr3 = [
+    { id: 15, name: "John" },
+    { id: 23, name: "Vallet" },
+    { id: 39, name: "Lorren" },
+  ];
+  const arr4 = arr3.find((user) => user.id === 23); // примерр с обьектом в массиве
+  console.log(arr4); // --> {id: 23, name: 'Vallet'}
+  const arr5 = [
+    { price: 15, name: "banana" },
+    { price: 23, name: "Cherry" },
+    { price: 39, name: "kiwi" },
+    { price: 45, name: "apple" },
+  ];
+  const arr6 = arr5.find(
+    (product) => product.price > 25 && product.name.includes("le") // другой пример
+  ); //... метод includes с указанным значение ищет свойство содержащая указанное значение
+  console.log(arr6); // --> {price: 45, name: 'apple'}  в случает отсутствия подходящего свойства вернет undefined
+  const arr7 = ["guage", "man", 1, 2];
+  console.log("-------------------");
+  console.log(arr7.includes(2)); // --> true, тут includes ищет искомое свойство
+  const arr8 = [24, 33, 13, 86, 30];
+  const arr9 = arr8.includes(13, 1); // includes - может принимать два параметра (какое свойство ищем и с кокого индекса)
+  console.log(arr9); // --> true
+}
+
+console.log("---------------------");
+// 73 метод reduce
+{
+  const arr = [10, 20, 30, 40];
+  //reduce(acc, item, index, arr); // reduce принимает 4 параметра (накопительная переменная, элементы массива, индексы массива, весь массив)
+  const arr2 = arr.reduce((acc, item) => acc + item); // reduce - накопительный метод
+  console.log(arr2); // --> 100
+  const arr3 = arr.reduce((acc, item) => acc + item, 15); //последний параметр это параметр acc(по умолчанию = 0)
+  console.log(arr3);
+  const arr4 = ["hello", "ny", "frend"];
+  const arr5 = arr4.reduce((acc, item) => acc + " " + item, ""); // пример со строками
+  console.log(arr5); // --> hello ny frend
+  const arr6 = [23, 54, 30, 40, 81];
+  const arr7 = arr6.reduce((acc, num) => Math.max(acc, num, 0)); // пример с поиском максимального числа
+  console.log(arr7); // --> 81
+  console.log("-------------------");
+  const arrA = ["Vallet", "Lorren", "Chelsee", "Josh"];
+  const arrb = arrA.reduce((acc, item, index) => {
+    acc[index] = item; // обьект из массива
+    return acc;
+  }, {});
+  console.log(arrb); // --> {0: 'Vallet', 1: 'Lorren', 2: 'Chelsee', 3: 'Josh'}
+}
+
+// 74 метод revers / toReversed
+{
+  const arrA = ["A1", "B1", "C1", 10];
+  const reversed = arrA.reverse(); // reverse - разварачивает переданный массив и миняет оригинальный массив
+  console.log(reversed); // --> [10, 'C1', 'B1', 'A1']
+  console.log(arrA); // --> [10, 'C1', 'B1', 'A1']
+  const arrRev = ["a", "b", "c", "d"];
+  const arrRevCopy = arrRev.toReversed(); // toReversed - также переворачивет массив но не миняет оригинал
+  console.log(arrRevCopy); // --> ['d', 'c', 'b', 'a']
+}
+
+console.log("--------------------");
+// 75 метод sort / toSorted
+{
+  const arr = [1, 30, 8, 9, 4];
+  const arr2 = arr.sort(); // sort - сортирует массив и миняет оригинал(по умолчанию сортируются как строки)
+  console.log(arr); // --> [1, 30, 4, 8, 9]
+  console.log(arr2); // --> [1, 30, 4, 8, 9]
+  console.log("------------------------");
+  const arr3 = [2, 30, 14, 23, 42, 5, 19];
+  const arr4 = arr3.sort((a, b) => a - b); // sort - принимет функцию для изминения метода сортировки
+  console.log(arr4); // --> [2, 5, 14, 19, 23, 30, 42]
+  const arr5 = ["A", "a", "B", "b", "C", "c"];
+  arr5.sort(); //                                        sort на строках
+  console.log(arr5); // --> ['A', 'B', 'C', 'a', 'b', 'c']
+  const objA = [
+    { name: "Valler", age: 30 },
+    { name: "Boosh", age: 24 },
+    { name: "Loren", age: 18 },
+    { name: "Ches", age: 28 },
+  ];
+  const objB = objA.sort((a, b) => a.age - b.age); // sort с обьектами в массиве и правильной сортировкой по возрасту
+  console.log(objB);
+  console.log("------------------------");
+  const arr6 = [21, 13, 2, 5, 33, 14, 8, 40];
+  const arr7 = arr6.toSorted((a, b) => a - b); // toSorted - работает также как sort но не миняет оригинал
+  console.log(arr6); // [21, 13, 2, 5, 33, 14, 8, 40]
+  console.log(arr7); // [2, 5, 8, 13, 14, 21, 33, 40]
 }

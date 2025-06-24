@@ -57,3 +57,26 @@
 
 // const activeUser = users.filter((actUs) => actUs.isActive === true);
 // console.log(activeUser);
+
+// 72 задание
+// console.log("--------------------");
+// const students = [
+//   { name: "Алиса", subjects: ["JavaScript", "Python"] },
+
+//   { name: "Боб", subjects: ["Java", "C++"] },
+
+//   { name: "Чарли", subjects: ["HTML", "CSS"] },
+// ];
+// const stud = students.find((studName) => studName.name === "Алиса");
+// console.log(stud.subjects.includes("JavaScript"));
+
+// 73 задание
+// console.log("--------------------");
+// const words = ["Привет", "мир", "изучаем", "JavaScript"];
+
+// function combineStrings(arr) {
+//   const result = arr.reduce((acc, item) => acc + " " + item);
+//   return result;
+// }
+// const combinedString = combineStrings(words);
+// console.log(combinedString);
