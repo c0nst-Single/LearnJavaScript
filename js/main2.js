@@ -80,3 +80,21 @@
 // }
 // const combinedString = combineStrings(words);
 // console.log(combinedString);
+
+// 77 задание
+
+// const users = [
+//   { name: "Alice", age: 40, country: "USA" },
+
+//   { name: "Bob", age: 25, country: "Canada" },
+
+//   { name: "Charlie", age: 35, country: "USA" },
+
+//   { name: "Diana", age: 30, country: "USA" },
+
+//   { name: "Eva", age: 22, country: "Canada" },
+// ];
+// const filtUser = users // 1- фильтруем по ввозрасту 30+ лет, 2- из USA, 3- сортируем по возрсту
+//   .filter((item) => item.age >= 30 && item.country === "USA")
+//   .toSorted((a, b) => a.age - b.age);
+// console.log(filtUser);

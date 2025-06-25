@@ -483,3 +483,89 @@ console.log("--------------------");
   console.log(arr6); // [21, 13, 2, 5, 33, 14, 8, 40]
   console.log(arr7); // [2, 5, 8, 13, 14, 21, 33, 40]
 }
+
+// 76 метод with
+{
+  const arr = [1, 2, 3, 4, 5];
+  const arr2 = arr.with(2, true); // with принимает два параметра(какое свойство по индексу минять, на что минять)
+  console.log(arr); // ... не миняет оригинал
+  console.log(arr2);
+}
+
+console.log("-----------------------------");
+// вызов методов массивов по цепочке
+{
+  const arr = [5, 2, 8, 1, 4, 20, 13, 10, 19];
+  const arr2 = arr.filter((num) => num % 2 === 0).sort((a, b) => a - b); // два метода в одной строке
+  console.log(arr2);
+  console.log("--------------------");
+  const names = ["Vallet", "Chelse", "Vallet", "Loren", "Bob", "Loren"];
+  const unicNemas = names.filter(
+    (item, index, array) => array.indexOf(item) === index // сравнимается индекс первого искомого значения и индекс значения на котором происходит итерация
+  );
+  console.log(names.indexOf("Vallet")); // indexOf - выводит индекс первого попавшегося искомого значения
+  console.log(unicNemas);
+  console.log("--------------------");
+  const numbers = [1, 3, 6, 9, 12, 15];
+  const sum = numbers
+    .filter((num) => num % 3 === 0) // фильтруем является этерируемый элемент кратный 3(filter) и если да то складываем их вмместе(reduce)
+    .reduce((acc, item) => acc + item);
+  console.log(sum);
+  console.log("--------------------");
+  const fructs = ["apple", "banana", "grape", "cherry"];
+  const sortFruct = fructs.map((item) => item.toUpperCase()).toSorted(); //map просто пиридирает массив по 1, toUpperCase переводит буквы свойства в верхний регистр...
+  // ... toSorted - сортирует результат в алфовитном
+  console.log(sortFruct); // --> ['APPLE', 'BANANA', 'CHERRY', 'GRAPE']
+}
+
+// 78 многомерный массив
+{
+  const arr = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ];
+  console.log(arr[1][1]); // оброщение к двухмерному массиву, аналогично с трехмерными массивами
+  const c1 = [
+    [
+      [1, 2],
+      [3, 4],
+    ],
+    [
+      [5, 6],
+      [7, 8],
+    ],
+  ];
+  const c2 = c1.map((elem) => elem.map((num) => num.map((item) => item * 5))); // импользование методов с многомерным массивом
+  console.log(c2);
+  console.log(c1);
+
+  for (let i = 0; i < c1.length; i++) {
+    for (let j = 0; j < c1[i].length; j++) {
+      // итерация по трехмерному массиву
+      console.log(c1[i][j]);
+    }
+  }
+  arr.push([10, 11, 12]); // добовление массива в двухмерный массив
+  console.log(arr);
+  c1[1].push([9, 10]); // добовление массива в трехмерный массив
+  console.log(c1);
+}
+
+console.log("----------------------");
+// 79 метод some / every
+{
+  const arr = [1, 2, 3, 1, 2, 3];
+  console.log(arr.lastIndexOf(2)); // lastIndexOf - возврощает индекс последнего указанного элемента
+  let number = [1, 2, 3, 4, 5];
+  let number2 = number.some((num) => num - 5 === 0); // some - возврощает true ксли хотябы один рас пройдет условие, в ином случае вернет false
+  console.log(number2); // --> true
+  let number3 = number.every((num) => num - 5 === 0); // every аозврощает true елси все элементы пройдут условие, иначе верчнет false
+  console.log(number3); // --> false
+  const arr2 = ["apple", "banana", "orange"];
+  const arr3 = arr2.every((value) => value.includes("a")); // проверяем есть ли "a" в каждом элементе строки
+  console.log(arr3);
+  const arrMix = [4, "hello", 20, "help"];
+  const arrMix2 = arrMix.every((item) => typeof item === "number"); // проверяем все ли элементы массива относятся к числу
+  console.log(arrMix2);
+}
