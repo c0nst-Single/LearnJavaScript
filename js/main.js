@@ -569,3 +569,43 @@ console.log("----------------------");
   const arrMix2 = arrMix.every((item) => typeof item === "number"); // проверяем все ли элементы массива относятся к числу
   console.log(arrMix2);
 }
+
+console.log("---------------------------------");
+// 80 метод findIndex
+{
+  const arr = [19, 24, 31, 35, 42];
+  const arr2 = arr.findIndex((index) => index > 30 && index < 40); //findIndex возврощает индекс мервого элемента прошедшего условие
+  console.log(arr2); // --> 2
+  const arr3 = [
+    { id: 1, name: "Vallet" },
+    { id: 2, name: "Jhon" },
+    { id: 3, name: "Chelse" },
+  ];
+  const arr4 = arr3.findIndex((item) => item.name === "Chelse"); // другой пример (возврозает -1 если ненайдет искомый элемент)
+  console.log(arr4); // --> 2
+}
+
+console.log("-------------------------");
+// 81 метод flat
+{
+  const arr = [1, 2, 3, [4, 5]];
+  const arr2 = arr.flat(); // flat - сплющевает массив на 1 уровень(параметр по умолчанию 1)
+  console.log(arr2); // --> [1, 2, 3, 4, 5]
+  const arr3 = [1, [2, [3]]];
+  const arr4 = arr3.flat(2); //с параметром (2) массив с двойной вложенностью в обычный массив
+  console.log(arr4); // --> [1, 2, 3]
+  const arr5 = [1, 2, [3, 4, 5]];
+  const arr6 = arr5.flat().map((num) => num * 2); //пример с использованием двух методов
+  console.log(arr6); // --> [2, 4, 6, 8, 10]
+  const arr7 = [1, , , , , [, 20, 30]];
+  const arr8 = arr7.flat(); // одновременнов бирает пустые ячеки
+  console.log(arr8); // --> [1, 20, 30]
+}
+
+console.log("---------------------");
+// 82 метод flatMap
+{
+  const arr = [1, 2, 3, 4];
+  const arr2 = arr.flatMap((num) => (num % 2 === 0 ? num : [])); //flatMap обьединяет в себе flat и map
+  console.log(arr2); // --> [2, 4]
+}
