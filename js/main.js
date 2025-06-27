@@ -609,3 +609,22 @@ console.log("---------------------");
   const arr2 = arr.flatMap((num) => (num % 2 === 0 ? num : [])); //flatMap обьединяет в себе flat и map
   console.log(arr2); // --> [2, 4]
 }
+
+console.log("----------------");
+// 83 метод split / join
+{
+  const str = "Hello World";
+  const arr = str.split(" "); // split - переводит строку в массив, принимает 2 параметра...
+  // первый параметр указываем эдемент по котрому строку делить на массивы, 2 параметр до кокого индекса не включительно
+  console.log(arr); // --> ['Hello', 'World']
+  const str1 = "JavaScript";
+  const arr2 = str1.split(""); // если указать разделить по которому делим в виде "" - разабьет все символы
+  console.log(arr2); // --> ['J', 'a', 'v', 'a', 'S', 'c', 'r', 'i', 'p', 't']
+  const str3 = "JavaScript";
+  const arr3 = str3.split("", 4); // пример с использование второго параметра
+  console.log(arr3); // --> ['J', 'a', 'v', 'a']
+  console.log("----------------");
+  const arrStr = ["apple", "banana", "orenge"];
+  const arrStr2 = arrStr.join(" "); // join переводит массив в строку с указанным разделителем
+  console.log(arrStr2); // --> apple banana orenge
+}

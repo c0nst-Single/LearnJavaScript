@@ -98,3 +98,20 @@
 //   .filter((item) => item.age >= 30 && item.country === "USA")
 //   .toSorted((a, b) => a.age - b.age);
 // console.log(filtUser);
+
+// 84 задание
+// console.log("-----------------");
+// const arrTask1 = [10, 20, 30, 40, 50];
+// const arrWork1 = arrTask1.reduce((acc, item) => acc + item);
+// console.log(arrWork1);
+// console.log("-----------------");
+// const arrTask2 = [10, 5, 20, 8, 15, 27];
+// const arrWork2 = arrTask2.reduce((acc, item) =>
+//   acc < item ? (acc = item) : (acc = acc)
+// );
+// console.log(arrWork2);
+// console.log("-----------------");
+// const arrTask3 = [22, true, "World", 40];
+// const arrTask31 = ["Work", "Vallet", 13, false];
+// const arrWork3 = arrTask3.concat(arrTask31);
+// console.log(arrWork3);
