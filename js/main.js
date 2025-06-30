@@ -628,3 +628,91 @@ console.log("----------------");
   const arrStr2 = arrStr.join(" "); // join переводит массив в строку с указанным разделителем
   console.log(arrStr2); // --> apple banana orenge
 }
+
+// 85+ работа над строками
+{
+  const str = "hello World!";
+  const str2 = str.slice(6, 12); // метода slice работает с обьектами и строкми
+  console.log(str2); // --> World!
+
+  const str3 = "loren Ipsome to loren ipsome to";
+  const str4 = str3.replace("to", "and"); //replace - миняет указанное значение в строке на указанное значение(что заменить, начто заменить)
+
+  console.log(str4); // --> const str4 = str3.replace("to", "and")
+  const str5 = str3.replaceAll("to", "and"); // также миняет указанные значения но работает по всей строке
+  // replace и replaceAll - работает только со строками
+}
+{
+  const str = "loren Ipsome to loren ipsome to";
+  console.log(str.indexOf("to")); // indexOf - также работает со строками(указывает с кокого индекса)
+}
+
+// 88 деструктуризация массивоф
+{
+  const array = ["one", "to", "three"];
+  const [a, b, c] = array; // (наглядный пример)(undefined - если переменной нечего присвоить)
+  console.log(a);
+  const arr = [1, 2, 3, 4, 5, 6, "hi"]; // с оператором rest(...rest)
+  const [a1, b1, ...c1] = arr;
+  console.log(c1);
+  const arr2 = ["first", "second"];
+  const [a2, b2, c3 = "true"] = arr2; // паролельно можно создовать и просваивть одновременнно
+  const arr3 = [140, 200, 335, -430, 300];
+  const sumArr = (...arrg) => arrg.reduce((acc, num) => acc + num); // пример распоковки и складывания вместе с присвоением результата
+  console.log(sumArr(...arr3)); // --> 545
+  const arr4 = [11, 22, 33];
+  const sum2 = (a4, b4, c4) => a4 + b4 + c4; // другой пример
+  console.log(sum2(...arr4)); // --> 66
+}
+
+console.log("-------------------------");
+
+// 89 map полное руководство
+{
+  let map = new Map(); // создать структуру Map
+  map.set("key1", "value1"); // set добавить в map пару (ключ, значение)
+  console.log(map); // --> {'key1' => 'value1'}
+  map.set("key2", "value2").set("key3", true).set(123, false); // можно создать несколько сразу
+  console.log(map);
+  console.log(map.get(123)); // get получение значение по ключю
+  console.log(map.has("key4")); // --> false, has - проверка наличия ключа(true/false)
+  map.set("open", 1000);
+  console.log(map);
+  map.delete("open"); // delete - удаление пары в map
+  console.log(map);
+  console.log(map.size); // --> 4, size - получаем размер нащего map(кол-во элементов)
+
+  console.log("-------------------------");
+  for (let key of map.keys()) {
+    console.log(key); // метод keys - получаем все ключи
+  }
+  for (let key of map.values()) {
+    console.log(key); // метод keys - получаем все значения
+  }
+  for (let [key, value] of map.entries()) {
+    console.log(key, value); // метод keys - получаем все кдючи и значение
+  }
+
+  let map2 = new Map();
+  map2.set("add1", true).set("add2", false);
+  map2.clear(); // clear - очищает Map
+  let map3 = new Map([
+    ["color", "red"], // добовляем при создании кдюч значение - color => red
+    ["color2", "blue"],
+    ["color3", "pink"],
+  ]);
+  map3.forEach((key, value) => {
+    console.log(`${key}, ${value}`); // выводим все значения через forEach
+  });
+  let mapToArray = Array.from(map3); // Array.from используется для создания нового массива и массивоподобного, итерируемого обьекта
+  console.log(mapToArray); // - получаем массив массивоф
+  let str1 = "Hello world";
+  let str2 = Array.from(str1); // пример для наглядности
+  console.log(str2); // --> ['H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+  let str3 = [...str1]; // аналогичная запись
+  console.log(str3); // --> ['H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+  console.log("-----------------");
+
+  const mapToObj = Object.fromEntries(map3); // Object.fromEntries приминяется для создания нового обьекта из массива
+  console.log(mapToObj);
+}
