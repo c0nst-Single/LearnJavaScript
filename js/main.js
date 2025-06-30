@@ -704,7 +704,7 @@ console.log("-------------------------");
   map3.forEach((key, value) => {
     console.log(`${key}, ${value}`); // выводим все значения через forEach
   });
-  let mapToArray = Array.from(map3); // Array.from используется для создания нового массива и массивоподобного, итерируемого обьекта
+  let mapToArray = Array.from(map3); // Array.from используется для создания нового массива из массивоподобного, итерируемого обьекта
   console.log(mapToArray); // - получаем массив массивоф
   let str1 = "Hello world";
   let str2 = Array.from(str1); // пример для наглядности
@@ -715,4 +715,42 @@ console.log("-------------------------");
 
   const mapToObj = Object.fromEntries(map3); // Object.fromEntries приминяется для создания нового обьекта из массива
   console.log(mapToObj);
+}
+
+console.log("-------------------------");
+// 90 set полное руководство
+{
+  const set1 = new Set(); // создаем set\
+  set1.add(true).add("1"); // .add домавить в set жлемента(в скобках что добавить), также работает добовление по цепочке
+  set1.add([1, 2, 3, 4, 5]);
+  console.log(set1);
+  const set2 = new Set([1, 2, 3, 4, 1]);
+  console.log(set2); // --> {1, 2, 3, 4}, получем только уницальные значения
+  console.log(set2.has(2)); // --> true has - также как и в map проверяе наличие указанного элемента
+  console.log(set1.size); // --> 3, zixe также как и в map возврощает колво элементов
+  console.log("-------------------------");
+  set1.add("hello World");
+  set1.forEach(function (item) {
+    console.log(item);
+  });
+  const arraySet = Array.from(set1); // Array.from используется для создания нового массива из массивоподобного, итерируемого обьекта
+  console.log(arraySet);
+  const arraySpread = [...set1]; // оператор sprea здесь работает также как и from
+  console.log(arraySpread);
+  const array = [1, 1, 34, 2, 2, "A", "A", "b", true];
+  const set3 = new Set(array);
+  console.log(set3); // --> {1, 34, 2, 'A', 'b', …} откидывает повторяющиеся занчения автомотически
+  set3.clear(); // .clear - очищает set
+  console.log(set3); // -- > {size: 0}
+  console.log("------------------------");
+  const setA = new Set([1, 2, 3, 4]);
+  const setB = new Set([4, 3, 2, 1, 0]);
+  const setAB = new Set([...setA, ...setB]); // фщрмирование set из двух других set
+  console.log(setAB); // --> {1, 2, 3, 4, 0}
+  const setC = new Set([1, 2, 3, 4]);
+  const setD = new Set([5, 1, 3, 4]);
+  const setCD = new Set([...setC].filter((a) => setD.has(a))); // возврощает все повторяющиеся элементы в Set
+  console.log(setCD); // --> {1, 3, 4}
+  const setCD2 = new Set([...setC].filter((x) => !setD.has(x))); // возврощает те элементы которые не повторялись
+  console.log(setCD2); // --> {2}
 }
