@@ -754,3 +754,18 @@ console.log("-------------------------");
   const setCD2 = new Set([...setC].filter((x) => !setD.has(x))); // возврощает те элементы которые не повторялись
   console.log(setCD2); // --> {2}
 }
+
+console.log("--------------------------")
+// 91 WeakMap
+{
+  // основное различие WeakMap от Map в том что ключи в WeakMap подлежат к сборке муссора если на них нет какихто ссылок
+  // WeakMap нельзя перебирать(не итерируемый) нельзя очистить(.clear!), зделано для приватности какихто ключей
+  const weak1 = new WeakMap();  // создаем WeakMap
+  const obj = {}
+  weak1.set(obj, "hello")  // .set добовляет  свойство(одновременно присваеваем значение)
+  console.log( weak1) // --> {{…} => 'hello'}
+  console.log(weak1.get(obj))  // --> hello, .get возврощает свойство по ключю 
+  console.log(weak1.has(obj))  // --> true, .has - проверка наличия указанного элемента
+  weak1.delete(obj)  // .delete удаление элемента
+  console.log(weak1) // --> {}
+}
