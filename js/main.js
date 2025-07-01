@@ -721,13 +721,13 @@ console.log("-------------------------");
 // 90 set полное руководство
 {
   const set1 = new Set(); // создаем set\
-  set1.add(true).add("1"); // .add домавить в set жлемента(в скобках что добавить), также работает добовление по цепочке
+  set1.add(true).add("1"); // .add домавить в set элемента(в скобках что добавить), также работает добовление по цепочке
   set1.add([1, 2, 3, 4, 5]);
   console.log(set1);
   const set2 = new Set([1, 2, 3, 4, 1]);
-  console.log(set2); // --> {1, 2, 3, 4}, получем только уницальные значения
+  console.log(set2); // --> {1, 2, 3, 4}, получем только уникальные значения
   console.log(set2.has(2)); // --> true has - также как и в map проверяе наличие указанного элемента
-  console.log(set1.size); // --> 3, zixe также как и в map возврощает колво элементов
+  console.log(set1.size); // --> 3, size также как и в map возврощает колво элементов
   console.log("-------------------------");
   set1.add("hello World");
   set1.forEach(function (item) {
@@ -735,7 +735,7 @@ console.log("-------------------------");
   });
   const arraySet = Array.from(set1); // Array.from используется для создания нового массива из массивоподобного, итерируемого обьекта
   console.log(arraySet);
-  const arraySpread = [...set1]; // оператор sprea здесь работает также как и from
+  const arraySpread = [...set1]; // оператор spread здесь работает также как и from
   console.log(arraySpread);
   const array = [1, 1, 34, 2, 2, "A", "A", "b", true];
   const set3 = new Set(array);
@@ -755,17 +755,93 @@ console.log("-------------------------");
   console.log(setCD2); // --> {2}
 }
 
-console.log("--------------------------")
+console.log("--------------------------");
 // 91 WeakMap
 {
   // основное различие WeakMap от Map в том что ключи в WeakMap подлежат к сборке муссора если на них нет какихто ссылок
   // WeakMap нельзя перебирать(не итерируемый) нельзя очистить(.clear!), зделано для приватности какихто ключей
-  const weak1 = new WeakMap();  // создаем WeakMap
-  const obj = {}
-  weak1.set(obj, "hello")  // .set добовляет  свойство(одновременно присваеваем значение)
-  console.log( weak1) // --> {{…} => 'hello'}
-  console.log(weak1.get(obj))  // --> hello, .get возврощает свойство по ключю 
-  console.log(weak1.has(obj))  // --> true, .has - проверка наличия указанного элемента
-  weak1.delete(obj)  // .delete удаление элемента
-  console.log(weak1) // --> {}
+  const weak1 = new WeakMap(); // создаем WeakMap
+  const obj = {};
+  weak1.set(obj, "hello"); // .set добовляет  свойство(одновременно присваеваем значение)
+  console.log(weak1); // --> {{…} => 'hello'}
+  console.log(weak1.get(obj)); // --> hello, .get возврощает свойство по ключю
+  console.log(weak1.has(obj)); // --> true, .has - проверка наличия указанного элемента
+  weak1.delete(obj); // .delete удаление элемента
+  console.log(weak1); // --> {}
+}
+
+console.log("----------------");
+// 92 WeakSet
+{
+  // WeaSet может содержать только обьекты(приметивные типы непотдерживаются)
+  // WeaSet не имеет методов для перебора
+  // в WeaSet нет свойства size
+  const weakSet = new WeakSet(); // создаем
+  const obj1 = {};
+  const obj2 = {};
+  weakSet.add(obj1).add(obj2); // добовляем
+  console.log(weakSet);
+  weakSet.delete(obj1); // удаляем
+  console.log(weakSet);
+}
+
+console.log("--------------------------");
+// 93 прототипы (Prototype)
+{
+  const a = {
+    age: 22,
+    fn1: function () {
+      console.log("hello");
+    },
+  };
+
+  const a1 = Object.create(a); // Object.create метод для создания нового обьекта с указанныи прототипом
+  // в этом случае "a" стоновится прототипом "a1"
+  a1.fn1(); // a1 не имеет метода fn1 но находит его в цепочке прототипов
+  console.log(a1);
+  console.log("------------------");
+
+  const obj1 = {
+    name: "Villa",
+    MyNethod() {
+      console.log(`Hello world ${this.name}`);
+    },
+  };
+
+  const obj2 = Object.create(obj1); // таким образом obj2 наследует методы и свойства от obj1 но они лежат в прототипе
+  obj2.MyNethod();
+  console.log(obj2.name); // --> Villa
+}
+
+console.log("------------------");
+// 94 свойство __proto__
+{
+  // аналогично наоборот #create
+  // __proto__ - скрытое свойство которое содержит ссылку на обьект нашего прототипа
+  const obj1 = {};
+  const obj2 = Object.getPrototypeOf(obj1); // так obj2 становится прототипом obj1
+  obj2.city = "london";
+
+  console.log(obj1.city); // --> london
+
+  obj2.myFn = function () {
+    console.log("Big World");
+  };
+  obj1.myFn(); // --> Big World
+
+  console.log("------------------");
+  // getPrototypeOf
+  const obj3 = {};
+
+  const objProto = {
+    myFn() {
+      console.log("Frends");
+    },
+  };
+  Object.setPrototypeOf(obj3, objProto); // (1 - параметр для кого установить прототип, 2 - кто прототип)
+  objProto.city = "London";
+  console.log(obj3.city); // --> London
+
+  obj3.age = 23;
+  console.log(objProto.age); // --> undefined
 }
