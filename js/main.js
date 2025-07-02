@@ -845,3 +845,118 @@ console.log("------------------");
   obj3.age = 23;
   console.log(objProto.age); // --> undefined
 }
+
+console.log("------------------");
+// 96 функции высшего порядка и функции нисшего порядка
+{
+  const a1 = (a, b) => a + b; // пример функции нисшего порядка
+  const strHandler = (names) => `Hello ${names}`;
+  console.log(strHandler("missa")); // --> Hello missa, другой пример функции нисшего порядка
+
+  function fn1(a, b) {
+    // примеры функций высшего порядка ...
+    return b(a);
+  }
+  function fn2(c) {
+    return c * 5;
+  }
+  console.log(fn1(10, fn2)); // --> 50
+
+  const fn3 = (a, b) => b(a); // оналог записи выше
+  const fn4 = (c) => c * 4;
+  console.log(fn3(4, fn4)); // --> 16
+
+  function m1(a) {
+    return function (c) {
+      return c * a;
+    };
+  }
+  const m2 = (a) => (c) => c * a;
+
+  const f1 = m1(3);
+  const f2 = m2(10);
+  console.log(f1(6)); // --> 18
+  console.log(f2(10)); // --> 100
+  // примеры функций высшего порядка как метода массива
+  const arrNum = [1, 2, 3, 4, 5];
+  const b = arrNum.map((num) => num * 2); // умножаем кажное число на 2
+  console.log(b); // --> [2, 4, 6, 8, 10]
+
+  const b2 = arrNum.filter((num) => num % 2 === 0); // другой пример, проверка на четность
+  console.log(b2); // --> [2, 4]
+
+  const b3 = arrNum.reduce((acc, item) => acc + item, 0);
+  console.log(b3); // --> 15
+  console.log(" ");
+  // задача для примера
+
+  const task = [3, 5, 7, 12, 22, 58, 70];
+  const max = 15;
+  const taskCont = task.filter((num) => num > max);
+  console.log(taskCont);
+}
+
+console.log("------------------------");
+// 97 метод call, apply, bind
+{
+  const obj = {
+    name: "Zigl",
+    myMethod(lastName) {
+      console.log(`Привет ${this.name} ${lastName}`);
+    },
+  };
+  const obj2 = {
+    name: "Violet",
+  };
+  const a1 = obj.myMethod;
+  a1.call(obj, "Zpez"); // --> Привет Zigl Zpez, метод call позволяет вызвать метод с укозанием конкретного обьекта
+  // a1("zpez"); вызовет ошибку!
+  a1.call(obj2, "Evergader"); // --> Привет Violet Evergader
+  // call может использовать одну и туже функцию в разных контекстах
+  // ... так например изначально мы оброщаемся к методу в obj но контектом передаем obj2
+
+  console.log(" ");
+
+  // метод aplly также как call используется для вызова функции с указанием контекста но принимает арг. в виде массива
+  a1.apply(obj2, ["mantana"]); // --> Привет Violet mantana, (непринимает строку в качестве аргумента!(вернет ошибку))
+
+  console.log(" ");
+
+  // метод bind создает новую функцию с привязанным контекстом, этот контекст не может быть измене при вызове новой функции
+  const a2 = obj.myMethod.bind(obj2); // можно передать аргумент при вызове
+  a2("Garant"); // --> Привет Violet Garant, в отличии от call и apply можно вызвать позже
+  const a3 = obj.myMethod.bind(obj2, "gloma"); // можно передать аргумент сразу
+  a3(); // --> Привет Violet gloma
+  // прмер для наглядности >
+  const obj3 = {
+    language: "C#",
+    arr: [],
+    method(par1, par2) {
+      console.log(
+        `Привет я программист на ${this.language}, меня зовут ${par1}, мне ${par2} лет.`
+      );
+      this.arr.push({
+        name: par1,
+        lang: `${this.language}`,
+      });
+    },
+  };
+  const obj4 = obj3.method;
+  obj4.call(obj3, "Rubi", 30); // --> Привет я программист на C#, меня зовут Rubi, мне 30 лет.
+  const obj5 = {
+    language: "JavaScript",
+    arr: [],
+  };
+  obj4.call(obj5, "Andy", 28); // --> Привет я программист на JavaScript, меня зовут Andy, мне 28 лет.
+  console.log(obj3.arr);
+  console.log(obj5.arr);
+
+  const arr1 = ["Vallet", 22];
+  const arr2 = ["Boomer", 30];
+  obj4.apply(obj3, arr1);
+  obj4.apply(obj5, arr2);
+  obj4.call(obj5, ...arr2); // в call можно передать массив с распоковкой
+
+  const b = obj4.bind(obj3);
+  b(...arr1);
+}
