@@ -960,3 +960,80 @@ console.log("------------------------");
   const b = obj4.bind(obj3);
   b(...arr1);
 }
+
+console.log("---------------");
+// 98 получение даты
+
+{
+  // new Date возврощает часовой пояс и время
+  console.log(new Date()); // Thu Jul 03 2025 22:31:19 GMT+0300 (Москва, стандартное время)
+  const date = new Date(2025, 1, 18); // можно указывать свои данные(год, месяй, время), месяцы в js начинаются с 0
+  console.log(date);
+  console.log(" ");
+  const date2 = new Date();
+  const year = date2.getFullYear(); // метод getFullYear служит для получения текущщего года
+  console.log(year); // --> 2025
+  const month = date2.getMonth(); // getMonth получаем текущий месяц
+  console.log(month); // --> 6
+  const hours = date2.getHours(); // getHours получаем часы( мез минут)
+  console.log(hours);
+  const minutes = date2.getMinutes(); // getMinutes получаем минуты
+  console.log(minutes);
+  const second = date2.getSeconds(); // getSeconds получаем секунды
+  console.log(second);
+  const milliSecond = date2.getMilliseconds(); // getMilliseconds получаем милисекунды
+  const dayfOfWeak = date2.getDay(); // getDay получаем день недели(где 0 это воскресенье)
+  console.log(dayfOfWeak);
+
+  const date3 = new Date();
+  date3.setFullYear(2028); // setFullYear миняем год(если хоти получить присатвка get а если изменить приставка set)
+  date3.setMonth(12); // setMonth миняем месяц. Так как отсчет месяцев начинается с нуля до 11 включительно, JS перевел на след год
+  console.log(date3); // --> Wed Jan 03 2029 23:35:40 GMT+0300 (Москва, стандартное время)
+  console.log(`время ${hours}:${minutes}:${second}`);
+}
+
+console.log("-----------------------");
+// 99 приоброзуем дату в строку
+{
+  const date = new Date();
+  date.setDate(date.getDate() + 10); // добовляем 10 ко дням даты
+  console.log(date);
+
+  date.setMonth(date.getMonth() - 1); // миняем месяц
+  console.log(date);
+
+  const date2 = new Date();
+  const date21 = date2.toISOString(); // toISOString миняет формат вывода даты
+  console.log(date21); // --> 2025-07-03T20:53:37.612Z
+  const date22 = date21.toString();
+  console.log(date22);
+  const date3 = date2.toISOString().slice(0, 10); // пример со slice для наглядности
+  console.log(date3); // --> 2025-07-03
+}
+
+console.log("----------------------");
+// 100 toLocaleDateString
+{
+  const date = new Date();
+  console.log(date.toLocaleDateString()); // --> 04.07.2025, toLocaleDateString - выводит текщюю дату(число, месяй, год)
+  console.log(date.toLocaleDateString("en-US")); // --> 7/4/2025, миняет вывод на тип указанной страны (месяй, число, год)
+  console.log(date.toLocaleDateString("zh-CN")); // --> 2025/7/4, Китай
+
+  const date2 = new Date();
+  console.log(
+    date2.toLocaleDateString("en-US", {
+      weekday: "long", // получаем день недели
+      //weekday: 'narrow' получаем первую букву дня недели
+      //weekday: "short" получаем две буквы дня недели
+      year: "numeric", // выводит год
+      //month: "2-digit", // получаем месяц из двух символов
+      month: "long", // получаем месяц словом
+      day: "2-digit", // получаем число
+      hour: "2-digit", // выводит часы
+      minute: "2-digit", // выводит минуты
+      second: "2-digit", // выводит секунды
+      timeZoneName: "short", // выводит часовой пояс
+    })
+  ); // принимает 2 необязательных параметра (страна, обьект)
+  // --> Friday
+}
