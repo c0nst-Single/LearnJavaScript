@@ -1038,46 +1038,93 @@ console.log("----------------------");
   // --> Friday
 }
 
-console.log("----------------")
+console.log("----------------");
 //101 toLocalString
 {
   // toLocalString схож с toLocaleDateString
   // разница: toLocaleDateString формотирует только дату а toLocaleString формотирует и дату и время
-  const date = new Date()
-  console.log(date.toLocaleString()) // --> 04.07.2025, 13:35:55, toLocaleString выводит только дату и время
-  console.log(date.toLocaleString("ru-RU",{
-    weekday: "long",
-    year: "numeric",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  }))
+  const date = new Date();
+  console.log(date.toLocaleString()); // --> 04.07.2025, 13:35:55, toLocaleString выводит только дату и время
+  console.log(
+    date.toLocaleString("ru-RU", {
+      weekday: "long",
+      year: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })
+  );
 }
 
-console.log("----------------------")
+console.log("----------------------");
 // 102 setTimeout
 
-{
-  function fn1 (a, b, c){
-    console.log("Hello world")
+function setTimeout() {
+  function fn1(a, b, c) {
+    console.log("Hello world");
   }
-  setTimeout(fn1, 2000, 'a', 'b', 'c'); // setTimeout принимает 2 основных параметра(колбек функция, время задержки выполнения в микра-сек.)
+  setTimeout(fn1, 2000, "a", "b", "c"); // setTimeout принимает 2 основных параметра(колбек функция, время задержки выполнения в микра-сек.)
   // пораметры самой функции передаются после времени
-  setTimeout(function(){
-    console.log(`Привет мир`) // пример с анонимной функцией 
-  }, 3000 )
-  function fn2(name){
-    console.log(`Ваше имя - ${name}`)
+  setTimeout(function () {
+    console.log(`Привет мир`); // пример с анонимной функцией
+  }, 3000);
+  function fn2(name) {
+    console.log(`Ваше имя - ${name}`);
   }
-  setTimeout(fn2,2500, "Alica"); // пример с передачей параметра функции
-  
-  console.log(" ")
-  function seyHi() {
-    console.log("JavaScript")
-  }
-  const time1 = setTimeout(seyHi, 4000)
-  clearTimeout(time1) // clearTimeout отминяет вызов функции
+  setTimeout(fn2, 2500, "Alica"); // пример с передачей параметра функции
 
-  setTimeout(() => console.log('time'), 6000) // можно также передавать callBack функцию
+  console.log(" ");
+  function seyHi() {
+    console.log("JavaScript");
+  }
+  const time1 = setTimeout(seyHi, 1000);
+  clearTimeout(time1); // clearTimeout отминяет вызов функции
+
+  setTimeout(() => console.log("time"), 1000); // можно также передавать callBack функцию
 }
+
+console.log("----------------------");
+//103 метод padStart / padEnd
+// пример работы padStart
+const num = "9";
+const numUpdate = num.padStart(3, "0"); // (сколько символоф, какими заполнять в случаем нехватки(в начале))
+console.log(numUpdate); // --> 009
+
+// пример работы padEnd
+const numUpdate2 = num.padEnd(3, 0); // padEnd (сколько символоф, какими заполнять в случаем нехватки(в конце))
+console.log(numUpdate2); // --> 900
+
+const card = "8913";
+const cardUpdate = card.padStart(16, "*"); // другой пример
+console.log(cardUpdate); // --> ************8913
+
+function padStart() {
+  function fn1(par) {
+    const n = document.querySelector(".add"); // функция по выводу текста в браузере
+    n.textContent = par;
+    setTimeout(function () {
+      n.remove(); // remove - удаляет переменную(в данном случае с задержкой)
+    }, 4000);
+  }
+
+  fn1("Hello");
+
+  setTimeout(() => {
+    //window.location.href = "https://wallpaperscraft.ru/catalog/anime"; // переход на ссылку
+  }, 6000);
+}
+function padStart2() {
+  function fn2() {
+    const time = new Date();
+    const hours = time.getHours().toString().padStart(2, "0"); // padStart
+
+    const minutes = time.getMinutes().toString().padStart(2, "0");
+    const second = time.getSeconds().toString().padStart(2, "0");
+
+    const d1 = document.querySelector(".add");
+    d1.textContent = `${hours}:${minutes}:${second}`;
+  }
+  fn2();
+}
+padStart2();
