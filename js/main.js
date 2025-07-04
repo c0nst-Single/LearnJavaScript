@@ -1037,3 +1037,47 @@ console.log("----------------------");
   ); // принимает 2 необязательных параметра (страна, обьект)
   // --> Friday
 }
+
+console.log("----------------")
+//101 toLocalString
+{
+  // toLocalString схож с toLocaleDateString
+  // разница: toLocaleDateString формотирует только дату а toLocaleString формотирует и дату и время
+  const date = new Date()
+  console.log(date.toLocaleString()) // --> 04.07.2025, 13:35:55, toLocaleString выводит только дату и время
+  console.log(date.toLocaleString("ru-RU",{
+    weekday: "long",
+    year: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  }))
+}
+
+console.log("----------------------")
+// 102 setTimeout
+
+{
+  function fn1 (a, b, c){
+    console.log("Hello world")
+  }
+  setTimeout(fn1, 2000, 'a', 'b', 'c'); // setTimeout принимает 2 основных параметра(колбек функция, время задержки выполнения в микра-сек.)
+  // пораметры самой функции передаются после времени
+  setTimeout(function(){
+    console.log(`Привет мир`) // пример с анонимной функцией 
+  }, 3000 )
+  function fn2(name){
+    console.log(`Ваше имя - ${name}`)
+  }
+  setTimeout(fn2,2500, "Alica"); // пример с передачей параметра функции
+  
+  console.log(" ")
+  function seyHi() {
+    console.log("JavaScript")
+  }
+  const time1 = setTimeout(seyHi, 4000)
+  clearTimeout(time1) // clearTimeout отминяет вызов функции
+
+  setTimeout(() => console.log('time'), 6000) // можно также передавать callBack функцию
+}
