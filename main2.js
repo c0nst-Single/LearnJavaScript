@@ -115,3 +115,13 @@
 // const arrTask31 = ["Work", "Vallet", 13, false];
 // const arrWork3 = arrTask3.concat(arrTask31);
 // console.log(arrWork3);
+
+import { Temporal } from 'temporal-polyfill' // нельзя ставить в нутрь обьекта
+// запись выше импортирует код
+// далее весь код выводится в консоле, для вывода нужно указать директорию(при необходимости)...
+// ... и совершить вызов js файла (node main.js)
+
+
+console.log(Temporal.Now.instant().toString()) //--> 2025-07-07T18:59:19.959Z дата и время (В консоле)
+console.log(Temporal.Now.instant().toLocaleString()) // --> 07.07.2025, 21:59:19, ...
+// ... локальный формат вывода даты и времени

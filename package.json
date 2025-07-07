@@ -1,5 +1,7 @@
 {
+  "type": "module",
   "dependencies": {
     "temporal-polyfill": "^0.3.0"
+    
   }
 }
