@@ -91,7 +91,7 @@ console.log(obj12); // --> {"color":"red","age":15,"border":"2px","param":{"widt
 console.log(obj13); // --> {color: 'red', age: 15, border: '2px', param: {…}}
 console.log("-----------------------------------");
 
-// 57 деструктуризация - извекает значение из обьекта и присваивать простые переменные
+// 57 деструктуризация - извлекает значение из обьекта и присваивать простые переменные
 
 const obj14 = {
   age: 20,
@@ -1060,7 +1060,7 @@ console.log("----------------");
 console.log("----------------------");
 // 102 setTimeout
 
-function setTimeout() {
+function setTimeoutt() {
   function fn1(a, b, c) {
     console.log("Hello world");
   }
@@ -1128,3 +1128,250 @@ function padStart2() {
   fn2();
 }
 padStart2();
+
+console.log("----------------------");
+// 104 setInterval
+
+function setIntervall() {
+  const lang = "JavaScrtipt";
+  function fn1() {
+    console.log(`Hello ${lang}`);
+  }
+
+  //setInterval(fn1, 2000); // setInterval принимает 2 обязательных параметра(функйия, время в микросекундах) >
+  // ... зыпускает переданную функцию с переданной переодичностю
+
+  //setInterval(() => {console.log(`Hello world`);}, 2000); // также работает callBack вызов
+
+  const f1 = (name) => console.log(`hello ${name}`);
+
+  //setInterval(f1, 2000, "Vallet"); // пример с предачей параметра функции
+
+  function printMassage() {
+    console.log("Time go");
+  }
+
+  const p = setInterval(printMassage, 1000);
+
+  setTimeout(() => {
+    clearInterval(p); // clearInterval - останавливает setInterval
+    console.log("Прошло шесть секунд"); // пример интервального выполнения функции с остановкой с задержкой
+  }, 6000);
+}
+
+console.log("--------------");
+// 105 практика
+
+function b1(el) {
+  let bol = true;
+  function t1() {
+    bol = !bol; // миняет на значение на противоположное при каждом вызове(true/false)
+    el.style.opacity = bol ? 1 : 0; // миняет прозрачность текста(1 если bol = true, 0 если bol = false)
+    setTimeout(t1, 500); // задержка выполнения функции
+  }
+  t1(); //запускает функцию t1 заново сразу после ее завершения(рекурсия)
+}
+
+const cursorEL = document.querySelector("h1");
+
+//b1(cursorEL); // вызов функции
+
+// 106 рандомный цвет фона
+function randomColor() {
+  const simbol = "0123456789ABCDEF"; // набор символов которые учавствуют в зборке цвета по RGB
+  let colorr = "#";
+  for (let i = 0; i < 6; i++) {
+    colorr += simbol[Math.floor(Math.random() * simbol.length)]; // набираем рамдомный цвет в подготовленную переменную colorr
+  }
+  console.log(colorr);
+  return colorr;
+}
+
+function color2() {
+  const colorBody = document.querySelector("body"); // оброщаемся к основному тегу в html и присваеваем его в переменную
+  colorBody.style.backgroundColor = randomColor(); // присваеваем набранный набор RGB цвета(colorr) в стили цвета заднего фона пременной
+}
+
+//setInterval(color2, 1000); // вызов
+
+console.log("-------------------");
+// 107 интeрнационализация
+{
+  // форматирование чисел
+  const number = 123456.78;
+
+  const ru = new Intl.NumberFormat("ru-RU").format(number); // Intl.NumberFormat прнимает 2 параметра(страну, обьект)(сейчас только страна)
+  // ... форматирует переданные числа в ту запись которая используется в переданной стране
+
+  const usa = new Intl.NumberFormat("en-US").format(number);
+  const germany = new Intl.NumberFormat("de-DE").format(number);
+  const austria = new Intl.NumberFormat("de-AT").format(number);
+
+  console.log(ru); // --> 123 456,78
+  console.log(usa); // --> 123,456.78
+  console.log(germany); // --> 123.456,78
+  console.log(austria); // --> 123 456,78
+}
+
+console.log(" ");
+// 108 Форматирование дат
+{
+  const locales = [
+    "en-US", // Америка
+    "de-DE", // Германия
+    "ru-RU", // Россия
+    "kk-KZ", // Казахстан
+    "zh-CN", // Китай
+    "ar", // Арабские страны
+    "hi-IN", // Индия
+    "fr-FR", // Франция
+  ];
+
+  const number = 1234567.89;
+
+  const format1 = locales.map((item) =>
+    console.log(new Intl.NumberFormat(item).format(number))
+  );
+  for (let i = 0; i < locales.length; i++) {
+    console.log(new Intl.NumberFormat(locales[i]).format(number));
+  }
+
+  const number2 = 0.12345;
+
+  console.log(" ");
+  // пример с передачей обьекта с настройками
+  const format2 = locales.map((item) =>
+    new Intl.NumberFormat(item, {
+      style: "percent", // ставим знак процент в конце записи
+      minimumFractionDigits: "2", // сколько цифр покажет после запятой или точки
+    }).format(number2)
+  );
+
+  console.log(format2);
+  console.log("  ");
+
+  const money = 222.35;
+  const format3 = locales.map((item) =>
+    new Intl.NumberFormat(item, {
+      style: "currency", // указываем что это валюта
+      currency: "USD", // ставим знак валюты( доллар )
+    }).format(money)
+  );
+
+  console.log(format3.join("\n"));
+  console.log("------------------");
+  // форматирование дат
+
+  const date = new Date();
+
+  const newDate = locales.map(function (item) {
+    return new Intl.DateTimeFormat(item).format(date);
+  });
+
+  console.log(newDate.join("\n"));
+}
+
+console.log("---------------------");
+//109 редактировать дату
+{
+  const locales = [
+    "en-US", // Америка
+    "de-DE", // Германия
+    "ru-RU", // Россия
+    "kk-KZ", // Казахстан
+    "zh-CN", // Китай
+    "ar", // Арабские страны
+    "hi-IN", // Индия
+    "fr-FR", // Франция
+  ];
+  // формат вывода даты в разных странах >
+  const date1 = new Date();
+
+  // отдельный обьекта с настройками для вывода даты/времени
+  const options = {
+    weekday: "long", // weekday - день медели, "long" - полное название
+    year: "numeric", // год: числом
+    month: "long", // месяц: полное название
+    day: "numeric",
+  };
+  const newDate = locales.map((item) =>
+    new Intl.DateTimeFormat(item, options).format(date1)
+  );
+  console.log(newDate.join("\n"));
+  console.log("  ");
+
+  // формат вывода времени в разных странах >
+  const date2 = new Date();
+  const options2 = {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+  const newDate2 = locales.map((item) =>
+    new Intl.DateTimeFormat(item, options2).format(date2)
+  );
+  console.log(newDate2.join("\n"));
+  console.log(" ");
+
+  // выводим - Год, месяц, день, часы, минуты, секунды, в формате разных стран
+  const date3 = new Date();
+  const options3 = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+  const newDate3 = locales.map((item) =>
+    new Intl.DateTimeFormat(item, options3).format(date3)
+  );
+  console.log(newDate3.join("\n"));
+
+  // воводим время на страницу с обновлением каждую секунду
+  function updateTime() {
+    const currentDate = new Date(); // получаем время, дату
+    // настраиваем что будим выводить и в каком формате >
+    const options = {
+      hour: "2-digit", // числовой тип вывода
+      minute: "2-digit",
+      second: "2-digit",
+    };
+    // форматируем дату под указанную страну и передаем настройки нужных данных в переменной - options >
+    const timeFormat = new Intl.DateTimeFormat("default", options); // default - страна по умолчанию(определяется сама)
+
+    const formatDateTime = timeFormat.format(currentDate); //.format - применяем в отдельной строке чтоб зделать код более читабельным
+    const timeDiv = document.querySelector(".add2"); // оброщаемся к тегу в html файле и присваеваем его переменной
+    timeDiv.textContent = formatDateTime; // присвоенному тегу в контент через .textContent отформатированную дату
+  }
+  setInterval(updateTime, 1000); // запускаем функцию каждую секунду
+}
+
+console.log("------------------");
+//110 UTC GMT точное время
+{
+  const a1 = new Date();
+  console.log(a1);
+  console.log(a1.getUTCHours()); // getUTC получаем всемирную время/дату
+  console.log(a1.getUTCMonth()); // месяцы начинаются с 0
+
+  const utcDate = new Date(Date.UTC(2024, 3, 23, 6, 25, 0)); // создаем переменную и присваеваем дату...
+  // ... в скобках обращаемся к самой дате через метод UTC и передаем свои значения даты ...
+  // ... (год, месяц, день, часы, минуты, секунды)
+  const utcDateString = utcDate.toUTCString(); // переводим нашу дату в строковой формат
+  console.log(utcDateString); // --> Tue, 23 Apr 2024 06:25:00 GMT
+}
+
+{
+  // Temporal API — это современный и более мощный и точный способ работы с датами, временем, временными интервалами и таймзонами в JavaScript.
+
+  // temporal-polyfill установить как расширение в проект (код установки в npm)
+  // руководство по temporal IPA - https://tc39.es/proposal-temporal/docs/
+
+  const { Temporal } = require("temporal-polyfill"); // деструктуризация обьекта из модуля "temporal-polyfill"
+  // require("temporal-polyfill") - вызов функции который загружает модуль "temporal-polyfill"
+  // ... модуль "temporal-polyfill"  это код который эмулирует функциональность которая может остутствовать в старых версия языка
+
+  console.log("Initialization complete", Temporal.Now.instant());
+  //console.log(Temporal.Now.instant().toString()); // не можем получить на странице, получаем в терминале
+}
