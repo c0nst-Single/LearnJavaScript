@@ -1370,4 +1370,40 @@ console.log("------------------");
 }
 
 console.log("--------------------");
-//112 DOM
+//112 DOM, 113 методы для выборки html элементов
+
+{
+  const titleText = document.getElementById('add'); // .getElementById - позволяет обратится у элементу по ID
+  console.log(titleText) // --> <div id = "add"></div>
+
+  console.log(document.querySelector("p")); // --> <p>1</p>
+  //  querySelector - возврощает только первый элемент соответствующий CSS селектору
+  console.log(document.querySelectorAll("p")) // NodeList(3) [p, p, p]
+  // querySelectorAll - возврощает все элементы с соответствующим CSS селектору
+
+  const p = document.querySelectorAll("p")
+
+  Array.from(p).forEach((el) =>{
+    el.textContent = "Hello" // Array.from - превращает из нод элемента в массив чтобы вызвать метод...
+    //  ... forEach - пребор элементов (доступен только для массива)
+  })
+  // альтернатива >
+  
+  for(let val of p){
+    //console.log(val)  // выводим тег <p>
+    val.textContent = "Hello World" // миняем текст в теге <p>
+  }
+
+  for(let val of p){
+    //console.log(val)
+    val.innerHTML = "<b>Hello World</b>" // innerHTML добовляем тег стекстом в указанный тег через перебор
+  }
+
+  for(let val of p){
+    //console.log(val)
+    val.innerText = "<b>Hello World2</b>" // игнарирует скрытые элементы или стили и миняет только текст
+  }
+
+  console.log(document.getElementsByClassName("d1")); // возврощает HTML коллекцию с указанным классам
+  console.log(document.getElementsByTagName("p")) // возврощает HTML колекцию тегов с указанным именем
+}
