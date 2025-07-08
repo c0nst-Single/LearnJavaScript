@@ -1127,7 +1127,7 @@ function padStart2() {
   }
   fn2();
 }
-padStart2();
+// padStart2();
 
 console.log("----------------------");
 // 104 setInterval
@@ -1361,22 +1361,13 @@ console.log("------------------");
   const utcDateString = utcDate.toUTCString(); // переводим нашу дату в строковой формат
   console.log(utcDateString); // --> Tue, 23 Apr 2024 06:25:00 GMT
 }
-
-import 'temporal-polyfill/global' // нельзя ставить в нутрь обьекта
-
 {
-  console.log(Temporal.Now.instant().toString())
   // Temporal API — это современный и более мощный и точный способ работы с датами, временем, временными интервалами и таймзонами в JavaScript.
-
   // temporal-polyfill установить как расширение в проект (код установки в npm)
   // руководство по temporal IPA - https://tc39.es/proposal-temporal/docs/;
-
-   // деструктуризация обьекта из модуля "temporal-polyfill"
-  // require("temporal-polyfill") - вызов функции который загружает модуль "temporal-polyfill"
   // ... модуль "temporal-polyfill"  это код который эмулирует функциональность которая может остутствовать в старых версия языка
-
-  //console.log("Initialization complete", Temporal.Now.instant());
-  //console.log(Temporal.Now.instant().toString()); // не можем получить на странице, получаем в терминале
-  
   // ПРОДОЛЖЕНИЕ В main2.js - 119 строка
 }
+
+console.log("--------------------");
+//112 DOM
