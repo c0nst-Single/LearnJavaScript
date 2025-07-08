@@ -1373,37 +1373,80 @@ console.log("--------------------");
 //112 DOM, 113 методы для выборки html элементов
 
 {
-  const titleText = document.getElementById('add'); // .getElementById - позволяет обратится у элементу по ID
-  console.log(titleText) // --> <div id = "add"></div>
+  const titleText = document.getElementById("add"); // .getElementById - позволяет обратится у элементу по ID
+  console.log(titleText); // --> <div id = "add"></div>
 
   console.log(document.querySelector("p")); // --> <p>1</p>
   //  querySelector - возврощает только первый элемент соответствующий CSS селектору
-  console.log(document.querySelectorAll("p")) // NodeList(3) [p, p, p]
+  console.log(document.querySelectorAll("p")); // NodeList(3) [p, p, p]
   // querySelectorAll - возврощает все элементы с соответствующим CSS селектору
 
-  const p = document.querySelectorAll("p")
+  const p = document.querySelectorAll("p");
 
-  Array.from(p).forEach((el) =>{
-    el.textContent = "Hello" // Array.from - превращает из нод элемента в массив чтобы вызвать метод...
+  Array.from(p).forEach((el) => {
+    el.textContent = "Hello"; // Array.from - превращает из нод элемента в массив чтобы вызвать метод...
     //  ... forEach - пребор элементов (доступен только для массива)
-  })
+  });
   // альтернатива >
-  
-  for(let val of p){
+
+  for (let val of p) {
     //console.log(val)  // выводим тег <p>
-    val.textContent = "Hello World" // миняем текст в теге <p>
+    val.textContent = "Hello World"; // миняем текст в теге <p>
   }
 
-  for(let val of p){
+  for (let val of p) {
     //console.log(val)
-    val.innerHTML = "<b>Hello World</b>" // innerHTML добовляем тег стекстом в указанный тег через перебор
+    val.innerHTML = "<b>Hello World</b>"; // innerHTML добовляем тег стекстом в указанный тег через перебор
   }
 
-  for(let val of p){
+  for (let val of p) {
     //console.log(val)
-    val.innerText = "<b>Hello World2</b>" // игнарирует скрытые элементы или стили и миняет только текст
+    val.innerText = "<b>Hello World2</b>"; // игнарирует скрытые элементы или стили и миняет только текст
   }
 
   console.log(document.getElementsByClassName("d1")); // возврощает HTML коллекцию с указанным классам
-  console.log(document.getElementsByTagName("p")) // возврощает HTML колекцию тегов с указанным именем
+  console.log(document.getElementsByTagName("p")); // возврощает HTML колекцию тегов с указанным именем
+}
+
+console.log("-------------------------");
+//114 Обработчик событий
+{
+  const tegAdd = document.querySelector("h1");
+  const inputt = document.querySelector(".input");
+
+  tegAdd.addEventListener("click", function () {
+    //tegAdd.textContent = "Кнопка нажата!"; // миняет текст при нажатии
+    //this.textContent = "Кнопка нажата"; // миняет текст при нажатии (с использование this)
+  }); // addEventListener - метод используется для добавления слушателя событий
+  // ... позволяет риагировать на действия пользовотеля (клик мыши, навидение курсора, нажатие клавиш и тд.)(принимает 3 параметра)
+  // ... 1 - параметр событие 2 - функция запускающаяся при указ. событии, 3 - опциональное значение(необязательно)
+
+  function myFn() {
+    this.style.color = "#fff";
+  }
+  function myFn2() {
+    this.style.color = "yellow";
+  }
+
+  tegAdd.addEventListener("mouseover", myFn); // mouseover - срабатывает при наведениее курсора
+  tegAdd.addEventListener("mouseout", myFn2); // mouseout - срабатывает при отвода курсора
+
+  inputt.addEventListener("input", function (event) {
+    //console.log(event); // в этом случае event - предстовляет собой обьект событий различных
+    tegAdd.textContent = event.target.value; // - оброщаемся к заголовку и миняем текст...
+    // ... .target.value - возврощает значение нашем input
+    if (inputt.value === "") {
+      tegAdd.textContent = "JavaScript"; // выводит указанный тест при условии указанного значания inputt
+    }
+  });
+
+  function BgColor() {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    this.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`; // функция миняет цвет фона
+  }
+
+  document.querySelector("body").style.backgroundColor = `rgb(211, 41, 156)`;
+  document.querySelector("body").addEventListener("click", BgColor);
 }
