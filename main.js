@@ -1450,3 +1450,34 @@ console.log("-------------------------");
   document.querySelector("body").style.backgroundColor = `rgb(211, 41, 156)`;
   document.querySelector("body").addEventListener("click", BgColor);
 }
+
+// 115 insertAdjacentHtml
+function insAdjHt(){
+  let newElement = document.createElement("div"); // createElement - создаем новый элемент
+  newElement.textContent = "Новый элемент"; // вносим контент в новый элемент
+  let parentElement = document.querySelector(".wrapper"); // оброщаемся к тегу в html по классу
+  //parentElement.appendChild(newElement); // appendChild - передаем указанный в скобках элемент в элмент к которому применяем
+  parentElement.prepend(newElement); // prepend - также добовляет дочерний элемент в родительский но ставит его сверху
+  parentElement.removeChild(newElement) // удаляет указанный элемент из родительского
+
+  const h1 = document.querySelector('h1');
+  let parentH1 = h1.parentNode; // parentNode - получаем родительский элемент указанного элемента
+  console.log(parentH1)
+}
+
+function insAdjHt2(){
+  let text = document.querySelector(".wrapper");
+  text.insertAdjacentHTML('beforebegin', `<div>Новый элемент перед элементом</div>`);
+  //insertAdjacentHTML - метод с помощью которго можно вставить HTML разметку, 1 парам. принимает 1 из 4 свойств...
+  // ... 2 свойство блок кода HTML разметки, 'beforebegin' - ставит наш блок перед родительским элементом
+  
+  text.insertAdjacentHTML('afterbegin', `<div>Новый элемент в нутри элемента в начале</div>`);
+  // 'afterbegin' - вставляет наш блок в нутрь родительского элемента с верху остальных элементов
+
+  text.insertAdjacentHTML('beforeend', `<div>Новый элемент в нутри элемента в конце</div>`);
+  //beforeend - вставляет наш блок внутри элемента а конце остальных
+
+  text.insertAdjacentHTML('afterend', `<div>Новый элемент после элемента</div>`);
+  // 'afterend' - вставляет наш блок после родительского блока
+}
+insAdjHt2()
