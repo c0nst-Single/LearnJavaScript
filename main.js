@@ -1410,7 +1410,7 @@ console.log("--------------------");
 
 console.log("-------------------------");
 //114 Обработчик событий
-{
+function handler() {
   const tegAdd = document.querySelector("h1");
   const inputt = document.querySelector(".input");
 
@@ -1452,32 +1452,107 @@ console.log("-------------------------");
 }
 
 // 115 insertAdjacentHtml
-function insAdjHt(){
+function insAdjHt() {
   let newElement = document.createElement("div"); // createElement - создаем новый элемент
   newElement.textContent = "Новый элемент"; // вносим контент в новый элемент
   let parentElement = document.querySelector(".wrapper"); // оброщаемся к тегу в html по классу
   //parentElement.appendChild(newElement); // appendChild - передаем указанный в скобках элемент в элмент к которому применяем
   parentElement.prepend(newElement); // prepend - также добовляет дочерний элемент в родительский но ставит его сверху
-  parentElement.removeChild(newElement) // удаляет указанный элемент из родительского
+  parentElement.removeChild(newElement); // удаляет указанный элемент из родительского
 
-  const h1 = document.querySelector('h1');
+  const h1 = document.querySelector("h1");
   let parentH1 = h1.parentNode; // parentNode - получаем родительский элемент указанного элемента
-  console.log(parentH1)
+  console.log(parentH1);
 }
 
-function insAdjHt2(){
+function insAdjHt2() {
   let text = document.querySelector(".wrapper");
-  text.insertAdjacentHTML('beforebegin', `<div>Новый элемент перед элементом</div>`);
+  text.insertAdjacentHTML(
+    "beforebegin",
+    `<div>Новый элемент перед элементом</div>`
+  );
   //insertAdjacentHTML - метод с помощью которго можно вставить HTML разметку, 1 парам. принимает 1 из 4 свойств...
   // ... 2 свойство блок кода HTML разметки, 'beforebegin' - ставит наш блок перед родительским элементом
-  
-  text.insertAdjacentHTML('afterbegin', `<div>Новый элемент в нутри элемента в начале</div>`);
+
+  text.insertAdjacentHTML(
+    "afterbegin",
+    `<div>Новый элемент в нутри элемента в начале</div>`
+  );
   // 'afterbegin' - вставляет наш блок в нутрь родительского элемента с верху остальных элементов
 
-  text.insertAdjacentHTML('beforeend', `<div>Новый элемент в нутри элемента в конце</div>`);
+  text.insertAdjacentHTML(
+    "beforeend",
+    `<div>Новый элемент в нутри элемента в конце</div>`
+  );
   //beforeend - вставляет наш блок внутри элемента а конце остальных
 
-  text.insertAdjacentHTML('afterend', `<div>Новый элемент после элемента</div>`);
+  text.insertAdjacentHTML(
+    "afterend",
+    `<div>Новый элемент после элемента</div>`
+  );
   // 'afterend' - вставляет наш блок после родительского блока
 }
-insAdjHt2()
+//insAdjHt2();
+
+// 116 Добовление классов, проверка удаление классов
+function addRemoveClass() {
+  const H1Title = document.querySelector(".h1");
+  const input = document.querySelector(".input");
+  H1Title.addEventListener("click", function () {
+    // обработчик события по клику
+    H1Title.classList.add("color-blue"); // classList.add - добавить класс (имя класса)
+    input.classList.remove("red"); // classList.remove - удадяет указанный класс
+    input.remove(); // удаляет элемент к которому применили
+  });
+}
+//addRemoveClass();
+function toggle() {
+  const H1Title = document.querySelector(".h1");
+  const input = document.querySelector(".input");
+
+  H1Title.addEventListener("click", function () {
+    input.classList.toggle("red"); // toggle - удадяет или добовляет указанный слас если он есть или если нету
+  });
+}
+//toggle();
+function yesOrNo() {
+  const H1Title = document.querySelector(".h1");
+  const input = document.querySelector(".input");
+
+  H1Title.addEventListener("click", function () {
+    if (input.classList.contains("input")) {
+      // classList.contains - проверка на наличие указанного класса
+      document.querySelector(
+        "body"
+      ).style.backgroundImage = `url(../images/bg_img2.jpg)`;
+    } else {
+      document.querySelector(
+        "body"
+      ).style.backgroundImage = `url(../images/naturmort-izi.jpg)`;
+    }
+  });
+}
+//yesOrNo();
+const H1Title = document.querySelector(".h1");
+const input = document.querySelector(".input");
+const btn = document.querySelector(".btn");
+const addBtn = document.querySelector(".add_btn");
+const arr = ["Яблоко", "Автомобиль", "Дом"];
+
+function getRandomWord() {
+  let random = Math.floor(Math.random() * arr.length);
+  const result = arr[random];
+  return result;
+}
+console.log(getRandomWord);
+
+btn.addEventListener("click", function () {
+  H1Title.textContent = getRandomWord();
+});
+
+addBtn.addEventListener("click", function () {
+  if (input.value.length > 0) {
+    arr.push(input.value); // value возврощает значение в элементе
+    input.value = "";
+  }
+});

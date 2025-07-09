@@ -16,11 +16,22 @@ h1{
 }
 .wrapper{
     border: 3px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }
 .wrapper p{
     font-size: 20px;
 }
+.add_btn,
+.btn,
 input{
+    margin-top: 20px;
     padding: 10px 30px;
     font-size: 25px;
+}
+.color-blue{
+    background-color: white;
+    color: red;
 }
