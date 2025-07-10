@@ -1344,7 +1344,7 @@ console.log("---------------------");
     const timeDiv = document.querySelector(".add2"); // оброщаемся к тегу в html файле и присваеваем его переменной
     timeDiv.textContent = formatDateTime; // присвоенному тегу в контент через .textContent отформатированную дату
   }
-  setInterval(updateTime, 1000); // запускаем функцию каждую секунду
+  //setInterval(updateTime, 1000); // запускаем функцию каждую секунду
 }
 
 console.log("------------------");
@@ -1532,27 +1532,98 @@ function yesOrNo() {
     }
   });
 }
-//yesOrNo();
-const H1Title = document.querySelector(".h1");
-const input = document.querySelector(".input");
-const btn = document.querySelector(".btn");
-const addBtn = document.querySelector(".add_btn");
-const arr = ["Яблоко", "Автомобиль", "Дом"];
+function yesOrrNo() {
+  const H1Title = document.querySelector(".h1");
+  const input = document.querySelector(".input");
+  const btn = document.querySelector(".btn");
+  const addBtn = document.querySelector(".add_btn");
+  const arr = ["Яблоко", "Автомобиль", "Дом"];
 
-function getRandomWord() {
-  let random = Math.floor(Math.random() * arr.length);
-  const result = arr[random];
-  return result;
-}
-console.log(getRandomWord);
-
-btn.addEventListener("click", function () {
-  H1Title.textContent = getRandomWord();
-});
-
-addBtn.addEventListener("click", function () {
-  if (input.value.length > 0) {
-    arr.push(input.value); // value возврощает значение в элементе
-    input.value = "";
+  function getRandomWord() {
+    let random = Math.floor(Math.random() * arr.length);
+    const result = arr[random];
+    return result;
   }
-});
+  console.log(getRandomWord);
+
+  btn.addEventListener("click", function () {
+    H1Title.textContent = getRandomWord();
+  });
+
+  addBtn.addEventListener("click", function () {
+    if (input.value.length > 0) {
+      arr.push(input.value); // value возврощает значение в элементе
+      input.value = "";
+    }
+  });
+}
+
+// 117 Делегирование событий
+
+function delegation() {
+  window.addEventListener("keypress", function (event) {
+    // keypress - реигирует на нажатие клавиш
+    console.log(event.key); // key в этом контексте выводит клавишу на которую нажли
+    if (event.key === "Enter") {
+      console.log("Нажата клавиша Enter");
+    }
+  });
+
+  const d1 = document.querySelector(".d1");
+  const d2 = document.querySelector(".d2");
+  const d3 = document.querySelector(".d3");
+
+  function randomColor(content) {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    let rgb = `rgb(${red}, ${green}, ${blue})`;
+    content.style.backgroundColor = rgb;
+    return content;
+  }
+
+  d1.addEventListener("click", function () {
+    randomColor(d1);
+    console.log("Сработало для d1");
+  });
+  d2.addEventListener("click", function () {
+    randomColor(d2);
+    console.log("Сработало для d2");
+  });
+  d3.addEventListener("click", function () {
+    randomColor(d3);
+    console.log("Сработало для d3");
+  });
+}
+function delegation2() {
+  const input = document.querySelector(".input");
+  const list = document.querySelector(".d6");
+
+  input.addEventListener("keypress", function (event) {
+    if (event.key === "Enter" && input.value.trim() !== "") {
+      //event.key < проверка если нажата клавиша "Enter" и input.value < значение в поле input(trim - убирает пробелы по бокам) не пустота
+      const taskText = input.value.trim();
+      input.value = "";
+
+      const div = document.createElement("div"); // создаем тег "div" в html и присваеваем его переменной div
+      div.textContent = taskText; // кладем текст из поля input в созданный тег "div"
+
+      const deleteBtn = document.createElement("button"); // создаем в html кнопку
+      deleteBtn.textContent = "Удалить"; // кладем текст в созданную кнопку
+      deleteBtn.classList.add("delete"); // даем класс созданной кнопке
+
+      div.append(deleteBtn); // кладем в созданный в html div созданную кнопку (deleteBtn)
+      list.append(div); // кладем созданный div в div с классом "d6"
+    }
+  });
+  list.addEventListener("click", function (e) {
+    console.log(e);
+    if (e.target.classList.contains("delete")) {
+      // e - обьект события, содержит тип/цель события или элемент у которого произошло событие и тд.
+      // target < текущий, classList.containsа < проверка на наличие обьекта (delete)
+      e.target.parentElement.remove(); // parentElement - оброщается к родительскому элементу обьекта событий(e)...
+      // ... remove - удаляет его
+    }
+  });
+}
+delegation2();

@@ -35,3 +35,24 @@ input{
     background-color: white;
     color: red;
 }
+.d1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000;
+}
+.d2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+}
+.d3{
+    width: 120px;
+    height: 120px;
+    border: 2px solid #000;
+}
