@@ -1559,6 +1559,8 @@ function yesOrrNo() {
 }
 
 // 117 Делегирование событий
+// это когда какоето событие проверяется на родительском элементе но оно выполняется у уго дочернего элемента...
+// таким образом мы сокрощаем колво оброботчиков событий что существенно снижает нагрузку и ускаряет работу кода
 
 function delegation() {
   window.addEventListener("keypress", function (event) {
@@ -1617,7 +1619,8 @@ function delegation2() {
     }
   });
   list.addEventListener("click", function (e) {
-    console.log(e);
+    // здесь list = HTML элемент "d6", обработчик событий вешается только на родительский d6 ...
+    // и через него мы оброщаемся к div и button это называется делегирование
     if (e.target.classList.contains("delete")) {
       // e - обьект события, содержит тип/цель события или элемент у которого произошло событие и тд.
       // target < текущий, classList.containsа < проверка на наличие обьекта (delete)
@@ -1626,4 +1629,38 @@ function delegation2() {
     }
   });
 }
-delegation2();
+//delegation2();
+
+function delegation3() {
+  const parentElement = document.querySelector(".wrapper");
+  parentElement.addEventListener("click", function (event) {
+    if (event.target.classList.contains("h1")) {
+      console.log("Нажат Элемент h1");
+    }
+  }); // здесь при нажатии на h1 мы получаем в консоле > "Нажат Элемент h1"
+}
+//delegation3();
+// еще пример делегирования
+
+function delegation4_1() {
+  const links = document.querySelectorAll(".Links");
+
+  links.forEach((el) => {
+    el.addEventListener("click", function (e) {
+      e.preventDefault; // отминяет события, например переход по ссылке
+      el.classList.toggle("k1"); // добовляет или убирает класс
+    });
+  });
+  // forEach перебирает все элементы с классом Links и вешае обработчик событий на каждый из них...
+  // сравнить с delegation4_2
+}
+//delegation4_1();
+function delegation4_2() {
+  document.querySelector(".nav").addEventListener("click", function (e) {
+    e.preventDefault;
+    e.target.classList.toggle("k1");
+  });
+  // здесь обработчик событий вешается только на родительский элемент nav...
+  // таким образом сокрощаем на грузку если сравнить с функцией delegation4_1
+}
+//delegation4_2();
