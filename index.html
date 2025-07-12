@@ -15,10 +15,12 @@
             <a class="Links" href="#">Link4</a>
             <a class="Links" href="#">Link5</a>
         </nav>
-        <h1 class="h1">Java Script</h1> 
+        <h1 class="h1" data-="1">Java Script</h1><!--атрибут data- - не имеет предопределенного значения, позволяет добовлять произвольную информацию -->
+        <a target="_blank" class="link" href="https://github.com/c0nst-Single">Git Hub</a><!--target="_blank" открытие ссылки в новой вкладке -->
         <div id = "add"></div>
         <div class="add2"></div>
         <div class="add3"></div> 
+        <div data-name="Vallet" data-age="25" class="user"></div>
         <!-- <div class="d1">
         <p>1</p>
         <p>2</p>
@@ -34,10 +36,20 @@
                 </div>
             </div>
         </div> -->
+        <div class="g1">
+            <div class="g2">
+                <div class="g1">
+                    <div class="g3">
+                        <button class="btnn">Кнопка</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="main.js" defer></script> <!--атрибут defer - скрипт выполнится только после загрузки HTML -->
+    <!--<script type="module" src="main.js" async></script> атрибут async - скрипт выполняется недожидаясь загрузки HTML-->
     <!-- <script type="module" src="main2.js"></script> -->
     <script type = "module" src = ' https : //cdn.jsdelivr.net/npm/temporal-polyfill@0.3.0/global.min.js ' > </script>
 </body>

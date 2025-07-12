@@ -1664,3 +1664,42 @@ function delegation4_2() {
   // таким образом сокрощаем на грузку если сравнить с функцией delegation4_1
 }
 //delegation4_2();
+
+// 118 defer async
+function deferAsync(){
+  document.addEventListener("DOMContentLoaded", function(){
+    // событие domContentLoaded - срабатывает после полной загрузки HTML файла
+    const h1 = document.querySelector('.h1');
+    h1.textContent = "DOM загружен"
+  })
+}
+
+// 119 работа с атрибутами
+function atrributeWork(){
+  const link = document.querySelector(".link");
+  link.setAttribute('href',"https://www.youtube.com/watch?v=g_JUebZTN0Y"); // set Atrribute - устанавливает атрибут...
+  //... так как href уже был установлен в HTML он миняет его значение на указанное после запятой
+
+  const h1 = document.querySelector('.h1');
+  h1.setAttribute("class", "title") // таким образом миняем имя класса h1 тега на "title"
+
+  h1.setAttribute("data-", "price") // также миняем значение атрибута "data-"
+
+  console.log(link.getAttribute("href")) // getAttribute - получаем значение указанного атрибута
+  
+}
+
+// 120 обьект dataset и метод closest
+{
+  const userElement = document.querySelector(".user"); 
+
+  console.log(userElement.dataset.age); // --> 25, dataset получаем доступ к кастомным data- атрибутам
+  console.log(userElement.dataset.name);
+
+  const btnn = document.querySelector('.btnn');
+  const parent = btnn.closest('.g1'); // slosest - ищет ближайшего родителя с указанным классом
+
+  parent.addEventListener('click', function(){
+    console.log(`Кликнули на g1`)
+  });
+}
