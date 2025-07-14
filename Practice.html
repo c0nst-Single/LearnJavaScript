@@ -7,21 +7,58 @@
     <link rel="stylesheet" href="css/Practice.css">
 </head>
 <body>
-    
-    <div class="modal hidden">
-        <div class="modal__block">
-            <h1 class="modal__title">Заголовок модального окна</h1>
-        <button class="modal__close modal__x">&#10006;</button><!--  кнопка для закрытия модального окна с крестиком -->
+    <div class="modal__window-121-122" style="display: none;">
+            <div class="modal hidden">
+            <div class="modal__block">
+                <h1 class="modal__title">Заголовок модального окна</h1>
+            <button class="modal__close modal__x">&#10006;</button><!--  кнопка для закрытия модального окна с крестиком -->
+            </div>
+            <p class="modal__descr">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Рукописи запятой дорогу меня предупредила напоивший имеет текст инициал ручеек.</p>
+            <div class="modal__image"><img class="img" src="" alt="images"></div>
+            <div class="modal__random-image">
+                <button class="modal__btn-random">Обновить</button>
+                <button class="modal__close modal__close-btn">Закрыть</button><!-- отдельная кнопка для закрытия модального окна-->
+            </div>
         </div>
-        <p class="modal__descr">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Рукописи запятой дорогу меня предупредила напоивший имеет текст инициал ручеек.</p>
-        <div class="modal__image"><img class="img" src="" alt="images"></div>
-        <div class="modal__random-image">
-            <button class="modal__btn-random">Обновить</button>
-            <button class="modal__close modal__close-btn">Закрыть</button><!-- отдельная кнопка для закрытия модального окна-->
-        </div>
+        <div class="overlay hidden"></div>
+        <button class="btn">Покозать модальное окно</button>
     </div>
-    <div class="overlay hidden"></div>
-    <button class="btn">Покозать модальное окно</button>
+
+
+    <div class="dialog-123" style="display: none;">
+        <!-- новый тег dialog похож на модальное окно, контент невыводится если нет атрибута > open... -->
+        <!-- или невключен ка напримере в js файле, закрывается по клавише > esc(встроенная функция) -->
+        <dialog class="dialog">  
+        <h1>Hello, World!</h1>
+        <p>Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты.</p>
+        <button class="close__dialog btn__dialog">Закрыть</button>
+    </dialog>
+    <button class="open btn__dialog">Открыть</button></div>
+    
+    
+    <div class="burger__menu-124">
+        <header>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <div class="block">
+                    <span class="span1"></span>
+                    <h2 class="h2">Далеко-далеко за словесными горами в стране.</h2>
+                </div>
+                <a href="#">Веб-разработка</a>
+                <a href="#">Next.js</a>
+                <a href="#">HTML</a>
+                <a href="#">Angular</a>
+                <a href="#">Node.js</a>
+                <a href="#">TypeScript</a>
+                <button class="burger__close">&#10006;</button>
+            </nav>
+        </header>
+        <div class="burger__overlay burger__hidden"></div>
+    </div>
 
     <script src="main_Practice.js" defer></script>
 </body>
