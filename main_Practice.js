@@ -66,23 +66,54 @@ closeDialog.addEventListener("click", () => {
 
 // burger menu 124 start
 
-const burger = document.querySelector(".burger");
-const nav = document.querySelector("nav");
-const closed = document.querySelector(".burger__close");
-const overlay = document.querySelector(".burger__overlay");
+function BurgerMenu() {
+  const burger = document.querySelector(".burger");
+  const nav = document.querySelector("nav");
+  const closed = document.querySelector(".burger__close");
+  const overlay = document.querySelector(".burger__overlay");
 
-burger.addEventListener("click", function () {
-  nav.classList.add("add");
-  overlay.classList.remove("burger__hidden");
-});
+  burger.addEventListener("click", function () {
+    nav.classList.add("add");
+    overlay.classList.remove("burger__hidden");
+  });
 
-closed.addEventListener("click", function () {
-  nav.classList.remove("add");
-  overlay.classList.add("burger__hidden");
-});
-overlay.addEventListener("click", function () {
-  nav.classList.remove("add");
-  overlay.classList.add("burger__hidden");
-});
+  closed.addEventListener("click", function () {
+    nav.classList.remove("add");
+    overlay.classList.add("burger__hidden");
+  });
+  overlay.addEventListener("click", function () {
+    nav.classList.remove("add");
+    overlay.classList.add("burger__hidden");
+  });
+}
 
 // burger menu end 124
+
+// burger menu2-125 start
+
+function BurgerMenu2() {
+  const hamburger = document.querySelector(".burger__menu2-125 .hamburger");
+  const navMenu = document.querySelector(".burger__menu2-125 .nav-menu");
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+
+    // document.querySelectorAll(".burger__menu2-125 .nav-link").forEach((el) => {
+    //   el.addEventListener("click", () => {
+    //     hamburger.classList.remove("active");
+    //     navMenu.classList.remove("active");
+    //   });
+    // });
+
+    navMenu.addEventListener("click", function (event) {
+      if (event.target.classList.contains("nav-link")) {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+      }
+    });
+  });
+}
+BurgerMenu2();
+
+// burger menu2-125 end

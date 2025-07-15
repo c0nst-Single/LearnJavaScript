@@ -45,8 +45,7 @@ button{
 .modal__title {
     font-size: 2.5rem;
 }
-.modal__close {
-}
+
 .modal__x {
     background-color: transparent;  /* прозрачный фон */
     color: rgb(211, 130, 9);
@@ -153,7 +152,7 @@ button{
     background-color: #fff;
 }
 
-header{
+.burger__menu-124 header{
     height: 12rem;
     padding: 1rem;
 }
@@ -230,3 +229,87 @@ header{
     display: none;
 }
 /* burger__menu-124" end*/
+
+
+/* burger__menu2-125" start*/
+
+.burger__menu2-125 header{
+    background-color: #272727;
+}
+.burger__menu2-125 a{
+    color: #fff;
+    text-decoration: none;
+}
+.burger__menu2-125 .nav-item {
+    list-style: none;
+}
+.burger__menu2-125 .navbar {
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+.burger__menu2-125 .nav-logo {
+    font-size: 40px;
+    font-weight: 700;
+}
+.burger__menu2-125 .nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 50px;
+}
+
+.burger__menu2-125 .nav-link {
+    font-size: 19px;
+    transition: .5s ease;  /* анимация */
+}
+.burger__menu2-125 .nav-link:hover{
+    color: rgb(5, 201, 201);
+}
+.burger__menu2-125 .hamburger {
+    cursor: pointer;
+    display: none;
+}
+.burger__menu2-125 .span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+@media(width < 800px){
+    .burger__menu2-125 .hamburger{
+        display: block;
+    }
+    .burger__menu2-125 .hamburger.active .span:nth-child(2){
+        opacity: 0;
+    }
+    .burger__menu2-125 .hamburger.active .span:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+    .burger__menu2-125 .hamburger.active .span:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .burger__menu2-125 .nav-menu{
+        position: fixed;
+        right: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: #272727;
+        width: 100%;
+        transition: 0.3s;
+    }
+    .burger__menu2-125 .nav-item{
+        max-width: 15px 0;
+        margin: 10px;
+    }
+    .burger__menu2-125 .nav-menu.active{
+        right: 0;
+    }
+}
+
+/* burger__menu2-125" end*/
