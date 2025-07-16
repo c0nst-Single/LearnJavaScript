@@ -114,6 +114,39 @@ function BurgerMenu2() {
     });
   });
 }
-BurgerMenu2();
+//BurgerMenu2();
 
 // burger menu2-125 end
+
+// tab-127 start
+function tab127() {
+  const buttons = document.querySelector(".tabs-127 .buttons");
+  const links = document.querySelectorAll(".tabs-127 .link");
+  const block = document.querySelectorAll(".tabs-127 .block");
+
+  buttons.addEventListener("click", function (event) {
+    if (event.target === buttons) return;
+
+    links.forEach((el) => {
+      el.classList.remove("link-active");
+    });
+
+    block.forEach((item) => {
+      item.classList.add("hidden");
+    });
+
+    if (event.target.classList.contains("link")) {
+      event.target.classList.add("link-active");
+    }
+
+    const data = event.target.getAttribute("data-");
+    console.log(data);
+
+    document
+      .querySelector(`.block-content--${data}`)
+      .classList.remove("hidden");
+  });
+}
+tab127();
+
+// teb-127 end
