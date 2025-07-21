@@ -203,3 +203,91 @@ function tab127() {
 //tab127();
 
 // teb-127 end
+
+// inimation__header-128 start
+function animationHeader() {
+  const header = document.querySelector(".inimation__header-128 header");
+  const links = document.querySelectorAll(".inimation__header-128 .link");
+  const logo = document.querySelector(".inimation__header-128 .logo");
+
+  function linksAnimation(e) {
+    if (e.target.classList.contains("link")) {
+      const targetLink = e.target; // присваеваем тикущий эдемент на который наводим
+
+      links.forEach((el) => {
+        el.style.opacity = this; // this - ссылаеца на сам обьект в оброботчике события
+      });
+      logo.style.opacity = this;
+      header.classList.toggle("head");
+      targetLink.style.opacity = 1;
+    }
+  }
+
+  header.addEventListener("mouseover", linksAnimation.bind(0.4)); // в скобках через bind значение opacity(по контексту)
+  header.addEventListener("mouseout", linksAnimation.bind(1));
+}
+
+// inimation__header-128 end
+
+// interObsAPI-129 start
+// intersection Obsorver API - позволяет оствлеживать пересечение определенны элементов в браузере
+function interObsAPI1() {
+  const d3 = document.querySelector(".d--3");
+
+  function fn1(intries) {
+    console.log(intries); // функция для переменной obs - выполняется в случае если экран поподает на указ. элемент obs.observe(d3) ...
+    // на указ. процент видимости в обьекте настроек - options(threshold)
+  }
+  const options = {
+    threshold: 0.2, // настройки для переменной obs...
+    // ...20% - вызов функции когда указ. обьект появится в окне сайта на 20%
+  };
+
+  const obs = new IntersectionObserver(fn1, options); // принимает 2 параметр(функцию, обьект с настройками)
+  obs.observe(d3); // предаем то что будим отслеживать(d3)
+}
+
+function interObsAPI2() {
+  const d5 = document.querySelector(".d--5");
+  const header = document.querySelector(".inimation__header-128 header");
+
+  const headerObs = new IntersectionObserver(
+    function (entries) {
+      entries.forEach((el) => {
+        //isIntersecting это элемент обьекта - entries со значение true если экран попадает на указ. процент видимости в обьекте настройках, ...
+        // ... или значением false если экран не находится на укза. проценте видимости
+        if (el.isIntersecting) {
+          header.classList.add("k2");
+        } else {
+          header.classList.remove("k2");
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+  headerObs.observe(d5);
+}
+interObsAPI2();
+
+const block = document.querySelectorAll(".interObsAPI-129 .block");
+
+function fn2(entries, obs) {
+  const sec = entries[0];
+  if (sec.isIntersecting) {
+    sec.target.classList.add("h4");
+  }
+  console.log(entries);
+  obs.unobserve(sec.target); // unobserve - прекратить наблюдение(кекущий эдемент)
+}
+
+const sectionObs = new IntersectionObserver(fn2, {
+  threshold: 0.2,
+});
+
+block.forEach((el) => {
+  sectionObs.observe(el);
+});
+
+// interObsAPI-129 end

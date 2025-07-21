@@ -433,3 +433,93 @@ button{
 
 /* tabs-127 end */
 
+/* inimation__header-128 start */
+
+.inimation__header-128 header{
+    padding: 1rem 2rem;
+    background-color: #262626;
+    height: 12rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transition: all .4s ease-in;
+}
+
+.inimation__header-128 .logo{
+    width: 20rem;
+    height: 10rem;
+    transition: all .4s ease-in-out;
+}
+
+.inimation__header-128 .logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* сохронение пропорций */
+}
+
+.inimation__header-128 nav{
+    display: flex;
+    align-items: center;
+    column-gap: 3rem;
+}
+
+.inimation__header-128 .link{
+    font-size: 2rem;
+    transition: all .3s ease-in-out;
+}
+
+.inimation__header-128 .head{
+    background-color: #161c53;
+}
+/* inimation__header-128 end */
+
+/* interObsAPI-129 start */
+
+.interObsAPI-129 a{
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    font-size: 2rem;
+}
+.interObsAPI-129 header{
+    background-color: #252525;
+    margin-bottom: 20rem;
+}
+.interObsAPI-129 main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.interObsAPI-129 nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10rem;
+}
+.interObsAPI-129 .block{
+    width: 80rem;
+    height: 30rem;
+    margin-bottom: 5rem;
+    color: #252525;
+    font-size: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #0075c4;
+    transform: translateY(10rem);
+    opacity: 0;
+}
+
+.interObsAPI-129 .k2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.interObsAPI-129 .h4{
+    transition: all 0.5s ease-in-out;
+    transform: translateY(-15rem);
+    opacity: 1;
+}
+/* interObsAPI-129 end */
