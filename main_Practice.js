@@ -269,9 +269,10 @@ function interObsAPI2() {
   );
   headerObs.observe(d5);
 }
-interObsAPI2();
+//interObsAPI2();
 
-const block = document.querySelectorAll(".interObsAPI-129 .block");
+function interObsAPI0(){
+  const block = document.querySelectorAll(".interObsAPI-129 .block");
 
 function fn2(entries, obs) {
   const sec = entries[0];
@@ -289,5 +290,8 @@ const sectionObs = new IntersectionObserver(fn2, {
 block.forEach((el) => {
   sectionObs.observe(el);
 });
+}
+
+
 
 // interObsAPI-129 end
