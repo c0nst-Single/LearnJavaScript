@@ -271,27 +271,60 @@ function interObsAPI2() {
 }
 //interObsAPI2();
 
-function interObsAPI0(){
+function interObsAPI0() {
   const block = document.querySelectorAll(".interObsAPI-129 .block");
 
-function fn2(entries, obs) {
-  const sec = entries[0];
-  if (sec.isIntersecting) {
-    sec.target.classList.add("h4");
+  function fn2(entries, obs) {
+    const sec = entries[0];
+    if (sec.isIntersecting) {
+      sec.target.classList.add("h4");
+    }
+    console.log(entries);
+    obs.unobserve(sec.target); // unobserve - прекратить наблюдение(кекущий эдемент)
   }
-  console.log(entries);
-  obs.unobserve(sec.target); // unobserve - прекратить наблюдение(кекущий эдемент)
+
+  const sectionObs = new IntersectionObserver(fn2, {
+    threshold: 0.2,
+  });
+
+  block.forEach((el) => {
+    sectionObs.observe(el);
+  });
 }
-
-const sectionObs = new IntersectionObserver(fn2, {
-  threshold: 0.2,
-});
-
-block.forEach((el) => {
-  sectionObs.observe(el);
-});
-}
-
-
 
 // interObsAPI-129 end
+
+// .lazy_images-130 start
+function lazy_images() {
+  const imgAll = document.querySelectorAll(".lazy_images-130 img[data-img]");
+
+  console.log(imgAll); // получаем nodeList с щестью изоброженияеми
+
+  const imgHandler = function (entries, obs) {
+    // obs - для снятия наблюдателя - .observe
+    const entry = entries[0];
+
+    const img = entry.target;
+
+    if (entry.isIntersecting) {
+      img.src = img.dataset.img; // dataset - оброщаемся к атрибуту
+
+      img.addEventListener("load", function () {
+        // load - событие прогрузки указ. элемента(изоброжения)
+        img.classList.remove("blur");
+      });
+    } else {
+      img.classList.add("blur");
+    }
+    //obs.unobserve(entry.target);
+  };
+
+  const imgObserver = new IntersectionObserver(imgHandler, {
+    root: null,
+    threshold: 0.5,
+  });
+
+  imgAll.forEach((el) => imgObserver.observe(el));
+}
+
+// .lazy_images-130 end

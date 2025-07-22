@@ -524,7 +524,7 @@ button{
 }
 /* interObsAPI-129 end */
 
-/* lazy_images-130 start*/
+/* lazy_images-130 - 131 start*/
 
 .lazy_images-130 a{
     display: inline-block;
@@ -544,4 +544,110 @@ button{
     justify-content: space-around;
     height: 10rem;
 }
-/* lazy_images-130 end */
+
+.lazy_images-130 section{
+    height: 100vh;
+    border: 3px solid #92006e;
+}
+
+.lazy_images-130 .block{
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #3911e9;
+    row-gap: 5rem;
+}
+
+.lazy_images-130 p{
+    font-size: 2rem;
+    line-height: 3.2rem;
+}
+
+.lazy_images-130 .images{
+    display: flex;
+    align-items: center;
+    column-gap: 3rem;
+    margin-bottom: 5rem;
+}
+.lazy_images-130 .images img{
+    width: 40rem;
+    height: 25rem;
+}
+.lazy_images-130 .blur{ 
+    transition: all 1s ease-in-out;
+    filter: blur(10px) brightness(0.4);
+}
+
+/* lazy_images-130 - 131 end */
+
+/* slider-132 start*/
+
+.slider-132 .slider-block{
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+
+.slider-132 .slider{
+    /* display: flex; */
+    transition: all 0.5s ease-in-out;
+}
+
+.slider-132 .slider img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+}
+
+.slider-132 .prev-btn, .slider-132 .next-btn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    color: #fff;
+}
+.slider-132 .prev-btn{
+    left: 10px;
+}
+.slider-132 .next-btn{
+    right: 10px;
+}
+.slider-132 main{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slider-132 .slider-dots{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;  
+}
+.slider-132 .slider-dot{
+    width: 18px;
+    height: 18px;
+    background-color: #000;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.slider-132 .slider-dot.active{
+    background-color: #fff;
+}
+
+/* slider-132 end */
+
