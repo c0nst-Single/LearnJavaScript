@@ -328,3 +328,29 @@ function lazy_images() {
 }
 
 // .lazy_images-130 end
+
+// slider-132-133 start
+
+const slider = document.querySelector(".slider-132 .slider");
+const prevButon = document.querySelector(".slider-132 .prev-btn");
+const nextButon = document.querySelector(".slider-132 .next-btn");
+const slides = [...slider.querySelectorAll("img")]; // получем массив из всех изоброжений находящихся в slider
+const slideCount = slides.length;
+
+let slideIndex = 0; // индекс текущего слайда
+
+// функция для обновления слайдера >
+const updateSlider = () => {
+  // перибираем всле слайды и отображаем только текущий
+  slideCount.forEach((slide, index) => {
+    slide.style.display = index === slideIndex ? "block" : "none";
+  });
+};
+
+// функция для показа следующего слайда
+const showNextSlide = () => {
+  slideIndex = (slideIndex + 1) % slideCount;
+  updateSliderDots(); // обновляем слайдер с точками
+};
+
+// slider-132-133 end

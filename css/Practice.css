@@ -594,13 +594,14 @@ button{
 }
 
 .slider-132 .slider{
-    /* display: flex; */
+    display: flex;
     transition: all 0.5s ease-in-out;
+    max-width: 100%;
 }
 
 .slider-132 .slider img{
     width: 100%;
-    height: 100%;
+    height: 500px;
     object-fit: cover;
     background-repeat: no-repeat;
 }
