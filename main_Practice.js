@@ -330,27 +330,182 @@ function lazy_images() {
 // .lazy_images-130 end
 
 // slider-132-133 start
+function slider1() {
+  const slider = document.querySelector(".slider-132-133 .slider");
+  const prevButon = document.querySelector(".slider-132-133 .prev-btn");
+  const nextButon = document.querySelector(".slider-132-133 .next-btn");
+  const slides = [...slider.querySelectorAll("img")]; // получем массив из всех изоброжений находящихся в slider
+  const slideCount = slides.length;
 
-const slider = document.querySelector(".slider-132 .slider");
-const prevButon = document.querySelector(".slider-132 .prev-btn");
-const nextButon = document.querySelector(".slider-132 .next-btn");
-const slides = [...slider.querySelectorAll("img")]; // получем массив из всех изоброжений находящихся в slider
-const slideCount = slides.length;
+  let slideIndex = 0; // индекс текущего слайда
 
-let slideIndex = 0; // индекс текущего слайда
+  // функция для обновления слайдера >
+  const updateSlider = () => {
+    // перибираем всле слайды и отображаем только текущий
+    slides.forEach((slide, index) => {
+      slide.style.display = index === slideIndex ? "block" : "none";
+    });
+  };
 
-// функция для обновления слайдера >
-const updateSlider = () => {
-  // перибираем всле слайды и отображаем только текущий
-  slideCount.forEach((slide, index) => {
-    slide.style.display = index === slideIndex ? "block" : "none";
+  // функция для показа следующего слайда
+  const showNextSlide = () => {
+    slideIndex = (slideIndex + 1) % slideCount;
+    updateSliderDots(); // обновляем слайдер с точками
+  };
+
+  // функция для показа предидущего слайда
+  const showPrevSlide = () => {
+    slideIndex = (slideIndex - 1 + slideCount) % slideCount;
+    updateSliderDots(); // обновляем слайдер с точками
+  };
+
+  updateSlider();
+
+  // доббовляем оброботчики событий для кнопок
+  nextButon.addEventListener("click", showNextSlide);
+  prevButon.addEventListener("click", showPrevSlide);
+
+  // обработка событий нажатия клавиш для слайдера
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      showPrevSlide();
+    } else if (event.key === "ArrowRight") {
+      showNextSlide();
+    }
   });
-};
 
-// функция для показа следующего слайда
-const showNextSlide = () => {
-  slideIndex = (slideIndex + 1) % slideCount;
-  updateSliderDots(); // обновляем слайдер с точками
-};
+  // создаем точки для слайдера
+  const slidrDots = document.querySelector(".slider-132-133 .slider-dots");
+
+  slides.forEach(() => {
+    const dot = document.createElement("span"); // создаем элементы для точек
+    dot.classList.add("slider-dot"); // даем элементам классы с свойствами в css
+    slidrDots.append(dot); // вставляем точки в div с кномками
+  });
+
+  const dots = [...slidrDots.querySelectorAll(".slider-dot")];
+
+  // функция для обновления слайдера с учотом точек
+  const updateSliderDots = () => {
+    updateSlider(); // обновляем слайдер
+
+    // Подвсветка текущей точки
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === slideIndex);
+    });
+  };
+
+  // Добовляем оброботчики событий для точек слайдера
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      slideIndex = index;
+      updateSliderDots(); // обновляем слайдер
+    });
+  });
+}
 
 // slider-132-133 end
+
+// rating-134 start
+
+function starRating() {
+  const stars = document.querySelectorAll(".rating-134 i");
+  const starNumberRating = document.querySelector(
+    ".rating-134 .spanNumberRating"
+  );
+
+  // реребираем все звезды
+  stars.forEach((item, index) => {
+    // на каждую звезду вешаем оброботчик событий
+    item.addEventListener("click", () => {
+      starNumberRating.textContent = index + 1; // вставляем цифру рейтинга выьранной звезды
+      // перебираем звезды после клика
+      stars.forEach((item, index2) => {
+        // если выбранная звезда по индексу больше чем была до этого то добовляем звезде класс активности... ,
+        // если выбранная звезда по индексу меньше чем была до этого то убираем класс активности тем звездам которые по индексу больше
+        index >= index2
+          ? item.classList.add("active")
+          : item.classList.remove("active");
+      });
+    });
+  });
+}
+
+// rating-134 end
+
+// timer-135 start
+
+function timer135() {
+  const elements = {
+    sale: document.querySelector(".timer-135 .sale"),
+    date: document.querySelector(".timer-135 .date"),
+    spans: document.querySelectorAll(".timer-135 span"),
+    paragraphs: document.querySelectorAll(".timer-135 p"),
+  };
+
+  document.querySelector(".timer-135 .close").addEventListener("click", () => {
+    elements.sale.classList.toggle("hidden");
+  });
+
+  const endDate = new Date(); // в переменную устанавливаем время
+  // миняем установленное время на наше
+  endDate.setHours(endDate.getHours() + 0); // миняем часы в нашей переменно со вроменем
+  endDate.setMinutes(endDate.getMinutes() + 1); // миняем минуты в нашей переменно со вроменем
+
+  // основная функция
+  const updateCountDown = () => {
+    const now = new Date();
+    const distance = endDate - now; // получаем миллисекунды
+    // дальше получаем из миллисекунд - часы, минуты, секунды используя деструктуризацию
+    const { hours, minutes, seconds } = {
+      hours: String(Math.floor(distance / (1000 * 60 * 60))).padStart(2, "0"),
+      // используем String чтобы можно было использовать padStart для дополнения времени нулем если одна цифра
+      minutes: String(
+        Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      ).padStart(2, "0"),
+      seconds: String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(
+        2,
+        "0"
+      ),
+    };
+
+    elements.date.textContent = `${hours} ч ${minutes} мин ${seconds} с`;
+
+    if (distance < 0) {
+      clearInterval(intervalValid);
+      elements.sale.classList.toggle("hidden");
+      elements.spans.forEach((el) => el.classList.toggle("hidden"));
+      elements.paragraphs.forEach(
+        (item) => (item.style.textDecoration = "none")
+      );
+    }
+  };
+
+  updateCountDown();
+  const intervalValid = setInterval(updateCountDown, 1000); // обновляем нашу функцию каждую секунду
+}
+
+// timer-135 end
+
+// accordion-136 start
+
+function accordion136() {
+  // получаем блоки в которых заголовок и текст
+  const accordionItems = document.querySelectorAll(".accordion-item");
+
+  // перебираем каждый заголовок
+  accordionItems.forEach((item) => {
+    // в текущем блоке получаем - заголовок, текст и знак +
+    const heading = item.querySelector(".accordion__block");
+    const content = item.querySelector(".accordion__content");
+    const plus = item.querySelector(".accordion-136 .plus");
+    // на заголовок вешаем оброботчмк по клику и через добовление/удаление класса раскрываем/скрываем текст и миняем + на х
+    heading.addEventListener("click", () => {
+      content.classList.toggle("active");
+      heading.classList.toggle("active");
+      plus.classList.toggle("rotate");
+    });
+  });
+}
+// accordion136();
+// accordion-136 end
