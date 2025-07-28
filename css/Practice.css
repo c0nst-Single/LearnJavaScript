@@ -857,6 +857,7 @@ button{
 .themes-137{
     padding: 1rem 2rem;
     color: #3911e9;
+    min-height: 800px;
 }
 
 .themes-137 a{
@@ -880,7 +881,7 @@ button{
     justify-content: space-between;
 }
 
-.themes-137 btn{
+.themes-137 .btn{
     padding: 1rem;
     cursor: pointer;
     background-color: #222;
@@ -908,6 +909,72 @@ button{
 }
 
 .themes-137 .block__p{
-    
+    font-size: 2rem;
+    padding: 2rem;
+    line-height: 2rem;
+    border: 0.4rem solid #ff0000;
+    background-color: #f1f1f1;
+    color: #222;
+    text-align: center;
+}
+
+/**/
+
+.dark-mode{
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+.themes-137.dark-mode p,
+.themes-137 .dark-mode a {
+    color: #eee;
+}
+.themes-137.dark-mode header{
+    background-color: #000;
+}
+
+.themes-137.dark-mode .btn{
+    background-color: #f1f1f1;
+    color: #222;
+}
+.themes-137.dark-mode .block div{
+    background-color: #000;
+}
+
+.themes-137.dark-mode .block__p{
+    background-color: #000;
 }
 /* themes-137 end */
+
+/* local_storage-138 start */
+.local_storage-138{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.local_storage-138 form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.local_storage-138 label{
+    font-size: 2.2rem;
+    color: #ffffff
+}
+.local_storage-138 button{
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    border: none;
+    font-size: 2rem;
+    background-color: green;
+
+}
+.local_storage-138 input{
+    width: 20rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+/* local_storage-138 end */

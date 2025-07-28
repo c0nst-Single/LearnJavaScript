@@ -509,3 +509,84 @@ function accordion136() {
 }
 // accordion136();
 // accordion-136 end
+
+// themes-137 start
+function themes137() {
+  const btn = document.querySelector(".themes-137 .btn");
+
+  btn.addEventListener("click", () => {
+    const body = document.querySelector(".themes-137");
+    body.classList.toggle("dark-mode");
+  });
+}
+
+// themes-137 end
+
+// local Storage-138 star
+// local Storage - хранилище данных
+// local Storage - сохроняет данные даже после перезагрузки страницы
+// Session Storage - данные обнуляются после перезагрузки
+function locStor1() {
+  localStorage.setItem("username", "Underson"); // добовляет (ключ, занчение) в хранилище
+  // localStorage.clear(); // очищает хранилище
+  console.log(localStorage.getItem("username")); // получаем значение по ключу
+  //console.log(localStorage.getItem("noRial")); // при указании ключа которого несуществует вернут null
+
+  const myName = localStorage.getItem("username"); // сохроняем значение по ключу в переменную
+
+  localStorage.removeItem("username"); // удачение элемента по ключу
+}
+
+function locStor2() {
+  const user = {
+    name: "Underson",
+    email: "undermail.com",
+    color: "red",
+  };
+
+  localStorage.setItem("user", JSON.stringify(user)); // передаем обьект(JSON.stringify для перевода обьекта в строку)
+
+  let sevaUser = JSON.parse(localStorage.getItem("user"));
+  console.log(sevaUser); // JSON.parse превращаем обратно в обьект
+}
+//locStor2();
+// localStorage.clear();
+
+function locStor3() {
+  const form = document.getElementById("form");
+  const userInput = document.querySelector("#user");
+
+  const save = localStorage.getItem("username");
+
+  if (save) {
+    userInput.value = save;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    localStorage.setItem("username", userInput.value);
+    userInput.value = "";
+  });
+}
+// locStor3();
+// практика 137 + 138
+// фунеция для сохранения выбранной темыпосле обновления
+function locStor4() {
+  const btn = document.querySelector(".themes-137 .btn");
+  const body = document.querySelector(".themes-137");
+  const save = localStorage.getItem("theme");
+
+  if (save) body.classList.add(save);
+
+  btn.addEventListener("click", () => {
+    const a1 = body.classList.contains("dark-mode")
+      ? "light-theme"
+      : "dark-mode";
+
+    body.classList.toggle("dark-mode");
+    localStorage.setItem("theme", a1);
+  });
+}
+
+// Local Storage-138 end
