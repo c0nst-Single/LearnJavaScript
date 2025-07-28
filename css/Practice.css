@@ -100,7 +100,7 @@ button{
     background-color: #000;
 }
 
-.btn {
+.modal__window-121-122 .btn {
     position: relative;
     padding: 1rem;
     background-color: grey;
@@ -851,3 +851,63 @@ button{
 }
 
 /* accordion-136 end */
+
+/* themes-137 start */
+
+.themes-137{
+    padding: 1rem 2rem;
+    color: #3911e9;
+}
+
+.themes-137 a{
+    text-decoration: none;
+    font-size: 2rem;
+    color: #0075c4;
+    text-transform: uppercase;
+    font-weight: 700;;
+}
+.themes-137 header{
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 3rem;
+}
+
+.themes-137 nav{
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+    justify-content: space-between;
+}
+
+.themes-137 btn{
+    padding: 1rem;
+    cursor: pointer;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    font-size: 1.7rem;
+}
+
+.themes-137 .block{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.themes-137 .block div{
+    background-color: #f1f1f1;
+    padding: 2rem;
+    width: 40rem;
+}
+
+.themes-137 .block div p{
+    font-size: 2.5rem;
+}
+
+.themes-137 .block__p{
+    
+}
+/* themes-137 end */
