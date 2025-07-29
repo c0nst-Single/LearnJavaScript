@@ -593,52 +593,180 @@ function locStor4() {
 
 // audioInit-139 start
 
-function audioInit139(){
-  const userInput = document.querySelector('.audioInit-139 .input')
-  const btn = document.querySelector('.audioInit-139 .send');
-const audioTrue = new Audio('attack.mp3'); // кладем аудио фаил в переменную
-const audioFalse = new Audio('age_advance.mp3')
+function audioInit139() {
+  const userInput = document.querySelector(".audioInit-139 .input");
+  const btn = document.querySelector(".audioInit-139 .send");
+  const audioTrue = new Audio("attack.mp3"); // кладем аудио фаил в переменную
+  const audioFalse = new Audio("age_advance.mp3");
 
-// функция - при нажитии кнопки Отправить если в инпут > 3 символоф то играет 1 мелодияелси мень 2 мелодия
-btn.addEventListener('click', ()=>{
-  if (userInput.value.length > 3){
-    audioTrue.play()
-    userInput.value = ''
-  } else{
-    audioFalse.play();
-  }
-})
+  // функция - при нажитии кнопки Отправить если в инпут > 3 символоф то играет 1 мелодияелси мень 2 мелодия
+  btn.addEventListener("click", () => {
+    if (userInput.value.length > 3) {
+      audioTrue.play();
+      userInput.value = "";
+    } else {
+      audioFalse.play();
+    }
+  });
 }
 
 // audioInit139()
-
-
 
 // audioInit-139 end
 
 // comments-140 start
 
-const stars = document.querySelectorAll('.comments-140 i');
-const spanNumberRating = document.querySelector('.comments-140 .spanNumberRating');
+const stars = document.querySelectorAll(".comments-140 i");
+const spanNumberRating = document.querySelector(
+  ".comments-140 .spanNumberRating"
+);
 
-const btnCommentAdd = document.querySelector('.comments-140 .add-comment');
-const form = document.querySelector('.comments-140 .form');
-const btnCloseForm = document.querySelector('.comments-140 .close')
-const btnSendForm = document.querySelector('.comments-140 .send');
-const formInputName = document.querySelector('.comments-140 .form__input-name')
-const formInputLastName = document.querySelector('.comments-140 .form__input-surname');
-const wrapper = document.querySelector('.comments-140 .wrapper')
-const textArea = document.querySelector('.comments-140 .form__textarea');
-const commentUser = document.querySelector('.comments-140 .block__comment-user')
+const btnCommentAdd = document.querySelector(".comments-140 .add-comment");
+const form = document.querySelector(".comments-140 .form");
+const btnCloseForm = document.querySelector(".comments-140 .close");
+const btnSendForm = document.querySelector(".comments-140 .send");
+const formInputName = document.querySelector(".comments-140 .form__input-name");
+const formInputLastName = document.querySelector(
+  ".comments-140 .form__input-surname"
+);
+const wrapper = document.querySelector(".comments-140 .wrapper");
+const textArea = document.querySelector(".comments-140 .form__textarea");
+const commentUser = document.querySelector(
+  ".comments-140 .block__comment-user"
+);
 
 stars.forEach((item, index) => {
-  item.addEventListener('click', () =>{
+  item.addEventListener("click", () => {
     spanNumberRating.textContent = index + 1;
     stars.forEach((item, index2) => {
-      index >= index2 ? item.classList.add('active') : item.classList.remove('active')
-    })
-  })
-})
+      index >= index2
+        ? item.classList.add("active")
+        : item.classList.remove("active");
+    });
+  });
+});
 
+function addCommentHandler() {
+  form.classList.toggle("hidden");
+  btnCommentAdd.classList.toggle("hidden");
+}
+
+btnCommentAdd.addEventListener("click", () => {
+  addCommentHandler();
+});
+
+btnCloseForm.addEventListener("click", () => {
+  addCommentHandler();
+});
+
+btnSendForm.addEventListener("click", () => {
+  if (formInputName.value.length >= 3 && formInputLastName.value.length >= 4) {
+    const ratingCpmment = +spanNumberRating.textContent;
+    console.log(ratingCpmment);
+
+    const arrStrt = [];
+
+    for (let i = 0; i < ratingCpmment; i++) {
+      const a1 = document.createElement("span");
+      a1.textContent = "★";
+      arrStrt.push(a1);
+    }
+    console.log(arrStrt);
+    htmlContainer(arrStrt);
+    textArea.value = formInputName.value = formInputLastName.value = ""; // очищаем поля
+    addCommentHandler();
+    showHiddenComment();
+  } else {
+    alert("Введите корректные данные");
+  }
+});
+
+function htmlContainer(arr) {
+  const date = new Date().toLocaleString("default", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  wrapper.insertAdjacentHTML(
+    "afterbegin",
+    `
+    <div class="block">
+                <h1 class="block__h1">${formInputName.value} ${
+      formInputLastName.value
+    }</h1>
+                <p class="block__p">Оценка:${spanNumberRating.textContent}${arr
+      .map((el) => `<span class="spanstar">${el.textContent}</span>`)
+      .join("")}</p>
+                <p class="block__comment">Коментарии: ${
+                  textArea.value === "" ? "❌" : "✅"
+                }</p>
+                <p class="block__comment-user">
+                ${textArea.value === "" ? "Нет комментариев" : textArea.value}
+                </p> 
+                <div class="block__date">${date}</div>
+            </div>
+
+    `
+  );
+}
+
+// функция скрытия комментариев
+
+let buttonsAdded = false;
+let hideState = false;
+
+function showHiddenComment() {
+  const div = document.querySelectorAll(".comments-140 .block");
+  console.log(div);
+
+  const arrayDiv = [...div];
+
+  if (div.length > 2 && !buttonsAdded) {
+    wrapper.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="buttons-block">
+        <button class="btn1">Показать еще</button>
+        <button class="btn2">Скрыть</button>
+      </div>
+
+      `
+    );
+
+    buttonsAdded = true;
+
+    const showMoreBtn = document.querySelector(".comments-140 .btn1");
+
+    showMoreBtn.addEventListener("click", () => {
+      arrayDiv.forEach((el) => {
+        el.classList.remove("hidden");
+      });
+      showMoreBtn.style.display = "none";
+      hideState = false;
+    });
+
+    const hideBtn = document.querySelector(".comments-140 .btn2");
+    hideBtn.addEventListener("click", function () {
+      if (!hideState) {
+        arrayDiv.slice(1).forEach((el) => {
+          el.classList.add("hidden");
+        });
+        hideState = true;
+        showMoreBtn.style.display = "inline-block";
+      }
+    });
+  }
+
+  if (div.length > 2) {
+    arrayDiv.forEach((el, index) => {
+      if (index > 1) {
+        el.classList.add("hidden");
+      }
+    });
+  }
+}
 
 // comments-140 end
