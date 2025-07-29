@@ -590,3 +590,55 @@ function locStor4() {
 }
 
 // Local Storage-138 end
+
+// audioInit-139 start
+
+function audioInit139(){
+  const userInput = document.querySelector('.audioInit-139 .input')
+  const btn = document.querySelector('.audioInit-139 .send');
+const audioTrue = new Audio('attack.mp3'); // кладем аудио фаил в переменную
+const audioFalse = new Audio('age_advance.mp3')
+
+// функция - при нажитии кнопки Отправить если в инпут > 3 символоф то играет 1 мелодияелси мень 2 мелодия
+btn.addEventListener('click', ()=>{
+  if (userInput.value.length > 3){
+    audioTrue.play()
+    userInput.value = ''
+  } else{
+    audioFalse.play();
+  }
+})
+}
+
+// audioInit139()
+
+
+
+// audioInit-139 end
+
+// comments-140 start
+
+const stars = document.querySelectorAll('.comments-140 i');
+const spanNumberRating = document.querySelector('.comments-140 .spanNumberRating');
+
+const btnCommentAdd = document.querySelector('.comments-140 .add-comment');
+const form = document.querySelector('.comments-140 .form');
+const btnCloseForm = document.querySelector('.comments-140 .close')
+const btnSendForm = document.querySelector('.comments-140 .send');
+const formInputName = document.querySelector('.comments-140 .form__input-name')
+const formInputLastName = document.querySelector('.comments-140 .form__input-surname');
+const wrapper = document.querySelector('.comments-140 .wrapper')
+const textArea = document.querySelector('.comments-140 .form__textarea');
+const commentUser = document.querySelector('.comments-140 .block__comment-user')
+
+stars.forEach((item, index) => {
+  item.addEventListener('click', () =>{
+    spanNumberRating.textContent = index + 1;
+    stars.forEach((item, index2) => {
+      index >= index2 ? item.classList.add('active') : item.classList.remove('active')
+    })
+  })
+})
+
+
+// comments-140 end

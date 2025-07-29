@@ -978,3 +978,193 @@ button{
     font-weight: 600;
 }
 /* local_storage-138 end */
+
+/* audioInit-139 start */
+
+.audioInit-139{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.audioInit-139 input{
+    width: 20rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.audioInit-139 button {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    border: none;
+    font-size: 2rem;
+    background-color: green;
+}
+.audioInit-139 form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* audioInit-139 end */
+
+/* comments-140 start */
+.comments-140{
+    margin-bottom: 4rem;
+}
+.comments-140 .rating{
+    display: flex;
+    align-items: flex-start;
+    column-gap: 1rem;
+    border-radius: 0.5rem;
+    margin: 2rem;
+}
+
+.comments-140 i {
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #e6e6e6;
+}
+
+.comments-140 .active{
+    color: orange;
+}
+
+.comments-140 .block{
+    background-color: #fff;
+    padding: 2rem 3rem;
+    color: #252525;
+    max-width: 60rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.comments-140 .block__h1{
+    font-style: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.comments-140 .block__p{
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+.comments-140 .block__comment{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.comments-140 .block__comment-user{
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-style: italic;
+}
+
+.comments-140 .block__date{
+    font-size: 1.7rem;
+    font-weight: 700;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.comments-140 .add-commet{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 1rem 3rem;
+    background-color: orange;
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    transition: all .2s ease-in;
+    font-weight: 600;
+}
+
+.comments-140 .add-commet:hover{
+    transform: scale(1.1); /*увеличение на 10%*/
+    background-color: rgb(33, 33, 241);
+    color: #fff;
+}
+
+.comments-140 .form{
+    width: 35rem;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comments-140 .form input{
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    outline: none;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+.comments-140 .form__textarea{
+    resize: vertical; /* позволяет раширять поле формы только по вертикале*/
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    font-style: italic;
+    outline: none;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.comments-140 .buttons{
+    display: flex;
+    column-gap: 1rem;
+}
+
+.comments-140 .buttons button{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: rgb(36, 36, 241);
+    color: #fff; 
+    transition: all 0.3s ease-in;
+}
+.comments-140 .send:hover{
+    background-color: green;
+}
+
+.comments-140 .close:hover{
+    background-color: darkblue;
+}
+/*===================*/
+.spanstar{
+    color: gold;
+}
+
+.comments-140 .buttons-block{
+    max-width: 30rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 2rem;
+}
+
+.comments-140 .btn1,
+.comments-140 .btn2{
+    width: 100%;
+    padding: 1rem;
+    background-color: rgb(3, 3, 116);
+    color: #fff;
+    border: none;
+    font-size: 1.8rem;
+}
+/* comments-140 end */
