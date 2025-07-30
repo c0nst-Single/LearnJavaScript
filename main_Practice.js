@@ -614,7 +614,7 @@ function audioInit139() {
 
 // audioInit-139 end
 
-// comments-140 start
+// comments-140-141 start
 
 const stars = document.querySelectorAll(".comments-140 i");
 const spanNumberRating = document.querySelector(
@@ -769,6 +769,6 @@ function showHiddenComment() {
   }
 }
 
-// comments-140 end
+// comments-140-141 end
 
 // (... > ООП)
