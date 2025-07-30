@@ -770,3 +770,5 @@ function showHiddenComment() {
 }
 
 // comments-140 end
+
+// (... > ООП)
