@@ -2,7 +2,8 @@
 // обьектно ореинтированное программирование
 // неглассное прпавило - функции конструкторы вссегда подписываются с большой буквы
 
-function oopProto() {
+function oop_proto142_143(){
+    function oopProto() {
   function Test1(name, age, year) {
     this.name = name;
     this.age = age;
@@ -53,3 +54,54 @@ let my1 = new Style("blue", 10, 2);
 console.log(my1);
 console.log(my1.getArea());
 console.log(my1.getColor());
+}
+
+// инкапсуляция 144
+
+function Counter(){
+    let count = 0;
+    this.increment = function (){
+        count++;
+    };
+     this.decrement = function (){
+        count--;
+    };
+    this.getCount = function(){
+        return count;
+    }
+}
+
+let a1 = new Counter();
+console.log(a1.count); // вернет undefined (недаступна напрмую)
+console.log(a1.getCount()); // --> 0
+a1.increment();
+console.log(a1.getCount());// --> 1
+a1.decrement();
+console.log(a1.getCount()); // --> 0
+
+console.log('-------------------------');
+ 
+function CreatPerson (name, age){
+    let objA = {
+        name,
+        age
+    }
+    return {
+        getName: function(){
+            return objA.name;
+        },
+        getAge: function(){
+            return objA.age;
+        },
+        setAge: function(n){
+            objA.age = n // метод для смены возраста
+        }
+    }
+}
+
+let person1_2 = new CreatPerson('Garper', 33);
+console.log(person1_2);
+console.log(person1_2.getAge());
+console.log(person1_2.getName());
+person1_2.setAge(45); // миняем возраст на указанный
+console.log(person1_2.getAge());
