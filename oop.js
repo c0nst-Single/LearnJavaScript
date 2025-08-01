@@ -264,3 +264,123 @@ function practice_149() {
   person.fullName_2 = inp;
   console.log(person.fullName);
 }
+
+// Приватные свойства 149
+// - это свойства доступ которых огроничен только в нутри самого класса...
+//... это значит что приватные свойства недоступны из вне класса
+// приватные свойства являются одним из основных принципах инкапсуляции в ООП
+
+function privated(){
+  class Counterr {
+  #count;  // приватное поле
+  constructor(a1 = 0){
+    this.#count = a1;
+  }
+increment(){
+  this.#count++
+};
+decrement (){
+  this.#count--
+}
+  getCount(){
+    return this.#count
+  }
+}
+
+const counter = new Counterr();
+
+counter.increment()
+counter.increment()
+counter.increment()
+counter.increment()
+counter.increment()
+console.log(counter.getCount()); // --> 5
+counter.decrement();
+console.log(counter.getCount()) // --> 4
+};
+
+function privated2(){
+  class User {
+  #name;
+  #age;
+  constructor(name, age){
+    this.#name = name;
+    this.#age = age;
+  }
+  getName(){
+    return this.#name
+  }
+  getAge(){
+    return this.#age
+  }
+  setName(n){
+    this.#name = n;
+  }
+  setAge(n){
+    this.#age = n
+  }
+}
+
+const user = new User('Costa', 25);
+console.log(`Имя ${user.getName()}, возраст ${user.getAge()}`);
+
+user.setName('Bob');
+user.setAge(38);
+console.log(`Имя ${user.getName()}, возраст ${user.getAge()}`);
+}
+
+// Оператор extends 150
+// играет центральную роль в наследовании классов, позволяя одному классу наследовать...
+// свойства и методы другого класса
+
+class User1{
+  constructor(name){
+    this.name = name;
+  }
+  speak(){
+    console.log(`${this.name} здравствуйте`)
+  }
+}
+
+// создаем новый класс и через оператор extends делаем прототипом класс User1
+class TestClass extends User1{
+  constructor(name, age){
+    super(name); // super используется как функция вызывающая родительский конструктор конструктор...
+    // ... (её необходимо вызывать до первого оброщения к клювому слову this)
+    this.age = age;
+  }
+  hide(){
+    console.log(`${this.name} привет!`)
+  }
+}
+
+const r1 = new TestClass('Costa', 10)
+r1.speak();// --> Costa здравствуйте, вызываем унаследованный метод
+r1.hide() // --> Costa привет!
+
+console.log('-----------------------');
+// другой пример для наглядности и сравнения с class>
+function User2(name){
+  this.name = name;
+}
+// создаем метод для функции конструктор User2 в прототипе >
+User2.prototype.hide = function(){
+    console.log(`${this.name} здравствуйте+_+_+_+_+`)
+  }
+
+// создаем вторую функцию конструктор
+function TestClass2(name, age){
+  User2.call(this, name); // this - текущий контекст (указывает на User2)
+  this.age = age
+}
+
+TestClass2.prototype = Object.create(User2.prototype); // User2 делаем прототипом TestClass2
+TestClass2.prototype.constructor = TestClass2;
+
+TestClass2.prototype.speak = function(){
+    console.log(`${this.name} Привет+_+_+_+_+`)
+  }
+
+const r2 = new TestClass2('Bob', 31);
+r2.speak();
+r2.hide()
